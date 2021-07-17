@@ -1,0 +1,5 @@
+compose(
+  inc,
+  negate,
+  pow
+)

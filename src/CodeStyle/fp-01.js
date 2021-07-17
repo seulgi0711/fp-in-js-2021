@@ -1,0 +1,6 @@
+const names = [
+  // ...
+];
+
+names
+  .map(...)

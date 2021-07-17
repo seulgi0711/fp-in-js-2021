@@ -1,0 +1,3 @@
+R.pipe(
+  
+)(person)

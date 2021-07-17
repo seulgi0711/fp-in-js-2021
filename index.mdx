@@ -1,0 +1,1429 @@
+import {
+  Title,
+  CodeSurfer,
+  CodeSurferColumns,
+  Step,
+} from "code-surfer";
+import { github, vsDark, vsDark as imperativeTheme, nightOwl as fpTheme } from "@code-surfer/themes";
+import customTheme from './custom-theme';
+import MyHeader from './src/Header';
+import roo from './roo.png'
+
+export const theme = vsDark;
+
+# Hello FP in JS 👋
+
+<div>
+비즈웹개발셀
+</div>
+<div>
+theo.gt
+</div>
+
+---
+
+# 살펴볼 내용
+
+<ul>
+  <li>Code Style</li>
+  <li>Function Composition</li>
+  <li>Pointfree Style & Currying</li>
+  <li>Functional Programming Styles</li>
+  <li>Functor & Error Handling</li>
+</ul>
+
+---
+
+# Code Style
+
+코드 스타일
+
+---
+
+<CodeSurfer>
+
+```json file=./src/CodeStyle/name-01.json title="Code Style" subtitle="FP 스터디 신청자 이름 목록"
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurferColumns themes={[github, imperativeTheme]}>
+
+<Step>
+
+```markdown title="요구사항"
+1. 성과 이름은 공백으로 구분
+2. 성과 이름은 대문자로 시작
+3. 오름차순 정렬
+```
+
+```json file=./src/CodeStyle/name-01.json title="변경 전"
+```
+
+</Step>
+
+<Step>
+
+```js 1 title="요구사항"
+1. 성과 이름은 공백으로 구분
+2. 성과 이름은 대문자로 시작
+3. 오름차순 정렬
+```
+
+```json file=./src/CodeStyle/name-02.json title="변경 후"
+```
+
+</Step>
+
+<Step>
+
+```js 2 title="요구사항"
+1. 성과 이름은 공백으로 구분
+2. 성과 이름은 대문자로 시작
+3. 오름차순 정렬
+```
+
+```json file=./src/CodeStyle/name-03.json title="변경 후"
+```
+
+</Step>
+
+<Step>
+
+```js 3 title="요구사항"
+1. 성과 이름은 공백으로 구분
+2. 성과 이름은 대문자로 시작
+3. 오름차순 정렬
+```
+
+```json 2:11 file=./src/CodeStyle/name-com.json title="변경 후"
+```
+
+</Step>
+
+</CodeSurferColumns>
+
+---
+
+
+<CodeSurferColumns sizes={[1, 2]} themes={[imperativeTheme, imperativeTheme]}>
+
+<Step subtitle="Imperative: 이름 목록 순회">
+
+```json file=./src/CodeStyle/name-01.json
+```
+
+```jsx file=./src/CodeStyle/imper-01.js
+```
+
+</Step>
+
+<Step subtitle="공백으로 구분: 언더바(_), 대시(-) 문자를 빈 문자열로 대체">
+
+```json file=./src/CodeStyle/name-02.json
+```
+
+
+```jsx file=./src/CodeStyle/imper-02.js
+```
+
+</Step>
+
+<Step subtitle="대문자로 시작: 공백을 기준으로 이름을 쪼개준다.">
+
+```json file=./src/CodeStyle/name-02.json
+```
+
+
+```jsx file=./src/CodeStyle/imper-03.js
+```
+
+</Step>
+
+<Step subtitle="대문자로 시작: 쪼개준 이름의 첫 글자를 대문자로 바꿔준다.">
+
+```json file=./src/CodeStyle/name-02.json
+```
+
+
+
+```jsx file=./src/CodeStyle/imper-04.js
+```
+
+</Step>
+
+<Step subtitle="대문자로 시작: splitName을 공백을 넣어서 join 한다.">
+
+```json file=./src/CodeStyle/name-03.json
+```
+
+
+```jsx file=./src/CodeStyle/imper-05.js
+```
+
+</Step>
+
+<Step subtitle="오름차순 정렬: sort 메소드 이용">
+
+```json file=./src/CodeStyle/name-com.json
+```
+
+
+```jsx file=./src/CodeStyle/imper-com.js
+```
+
+</Step>
+
+<Step>
+
+```json 1:21 file=./src/CodeStyle/name-com.json
+```
+
+
+```jsx 5:23 file=./src/CodeStyle/imper-com.js
+```
+
+</Step>
+
+</CodeSurferColumns>
+
+---
+
+
+<CodeSurferColumns sizes={[1, 2]}themes={[fpTheme, fpTheme]}>
+
+<Step subtitle="Functional: map 메소드를 이용하면 순회하며 변경 가능">
+
+```json file=./src/CodeStyle/name-01.json
+```
+
+```jsx file=./src/CodeStyle/fp-01.js
+```
+
+</Step>
+
+<Step subtitle="공백으로 구분: replaceSpace라는 함수를 정의해서 map 함수로 넘겨준다.">
+
+```json file=./src/CodeStyle/name-02.json
+```
+
+
+```jsx file=./src/CodeStyle/fp-02.js
+```
+
+</Step>
+
+<Step subtitle="대문자로 시작: 우선 string의 첫 글자를 대문자로 바꿔주는 함수 정의">
+
+```json file=./src/CodeStyle/name-02.json
+```
+
+```jsx file=./src/CodeStyle/fp-03.1.js
+```
+
+</Step>
+
+<Step subtitle="대문자로 시작: 이름을 받아서 공백 기준으로 첫 글자만 대문자로 바꿔주는 함수를 정의">
+
+```json file=./src/CodeStyle/name-02.json
+```
+
+```jsx file=./src/CodeStyle/fp-03.2.js
+```
+
+</Step>
+
+<Step subtitle="대문자로 시작: map + changePartStartCase">
+
+```json file=./src/CodeStyle/name-03.json
+```
+
+```jsx file=./src/CodeStyle/fp-03.3.js
+```
+
+</Step>
+
+<Step subtitle="오름차순 정렬">
+
+```json file=./src/CodeStyle/name-com.json
+```
+
+
+```jsx file=./src/CodeStyle/fp-com.js
+```
+
+</Step>
+
+<Step>
+
+```json file=./src/CodeStyle/name-com.json
+```
+
+```jsx 5:20 file=./src/CodeStyle/fp-com.js
+```
+
+</Step>
+
+</CodeSurferColumns>
+
+---
+
+<CodeSurferColumns themes={[imperativeTheme, fpTheme]}>
+
+<Step>
+
+```jsx file=./src/CodeStyle/imper-com.js title="Imperative"
+```
+
+```jsx file=./src/CodeStyle/fp-com.js title="Functional"
+```
+
+</Step>
+
+<Step>
+
+```jsx 5,6,21 file=./src/CodeStyle/imper-com.js title="Imperative" subtitle="for loop로 순회"
+```
+
+```jsx 18[4:7,36],19[4:7,43] file=./src/CodeStyle/fp-com.js title="Functional" subtitle="map 메소드로 순회"
+```
+
+</Step>
+
+<Step>
+
+```jsx 6,7 file=./src/CodeStyle/imper-com.js title="Imperative" subtitle="성과 이름은 공백으로 구분: replace로 변경 후 spaceName에 저장"
+```
+
+```jsx 5:7,18 file=./src/CodeStyle/fp-com.js title="Functional" subtitle="성과 이름은 공백으로 구분: map + replaceSpace"
+```
+
+</Step>
+
+<Step>
+
+```jsx 13:15 file=./src/CodeStyle/imper-com.js title="Imperative" subtitle="앞글자만 대문자로 변경 후 재 할당"
+```
+
+```jsx 9:11 file=./src/CodeStyle/fp-com.js title="Functional" subtitle="앞글자만 대문자로 변경 후 반환"
+```
+
+</Step>
+
+<Step>
+
+```jsx 9:20 file=./src/CodeStyle/imper-com.js title="Imperative" subtitle="이름을 공백으로 쪼개서 for loop를 이용해 앞글자만 대문자로 변경후 재 할당"
+```
+
+```jsx 9[7:15],13:15,19 file=./src/CodeStyle/fp-com.js title="Functional" subtitle="map + changePartStartCase: 앞에 정의한 startCase를 map과 함께 사용해서 반환"
+```
+
+</Step>
+
+<Step>
+
+```jsx 23 file=./src/CodeStyle/imper-com.js title="Imperative" subtitle="오름차순 정렬"
+```
+
+```jsx 20 file=./src/CodeStyle/fp-com.js title="Functional" subtitle="오름차순 정렬"
+```
+
+</Step>
+
+<Step subtitle="두가지 스타일의 코드에서 차이가 느껴지시나요?">
+
+```jsx 5:23 file=./src/CodeStyle/imper-com.js title="Imperative"
+```
+
+```jsx 5:20 file=./src/CodeStyle/fp-com.js title="Functional"
+```
+
+</Step>
+
+<Step>
+
+```jsx 6[9:12],7[9:17],9[9:17],12[9:16],13[5:12],17[5:16],20[3:10] file=./src/CodeStyle/imper-com.js title="Imperative" subtitle="값을 저장할 변수 선언과 재할당"
+```
+
+```jsx 17:20 file=./src/CodeStyle/fp-com.js title="Functional" subtitle="값을 저장하는 변수 사용 안함"
+```
+
+</Step>
+
+<Step>
+
+```jsx 5,7,9,11,14,15,17,20 file=./src/CodeStyle/imper-com.js title="Imperative" subtitle="코드 표현: 어떻게(How)"
+```
+
+```jsx 17:20 file=./src/CodeStyle/fp-com.js title="Functional" subtitle="코드 표현: 무엇(What)"
+```
+
+</Step>
+
+<Step>
+
+```jsx 5:23 file=./src/CodeStyle/imper-com.js title="Imperative" subtitle="함수 없음"
+```
+
+```jsx 5,9,13 file=./src/CodeStyle/fp-com.js title="Functional" subtitle="함수 기반"
+```
+
+</Step>
+
+<Step>
+
+```jsx 5:23 file=./src/CodeStyle/imper-com.js title="Imperative"
+```
+
+```jsx 5:22 file=./src/CodeStyle/fp-com.js title="Functional"
+```
+
+</Step>
+
+</CodeSurferColumns>
+
+---
+
+# 함수형 프로그래밍의 특징
+
+---
+
+<CodeSurfer>
+
+```js title="First Class Function" subtitle="함수 선언"
+function startCase(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+startCase('hello'); // Hello
+```
+
+```js title="First Class Function" subtitle="함수를 변수에 할당하는 형태로 선언할 수 있다."
+const startCase = (str) => {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+const startCase = function(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+startCase('hello'); // Hello
+```
+
+```js 1[64:90],2,3[1] title="First Class Function" subtitle="함수를 파라미터로 전달"
+document.querySelector('.my-button').addEventListener('click', (event) => {
+  console.log('버튼 클릭!');
+})
+```
+
+```js 2:4 title="First Class Function" subtitle="함수를 리턴하는 함수"
+const returnFunction = () => {
+  return () => {
+    // ...
+  }
+}
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer>
+
+```js title="Pure Function" subtitle="파라미터에만 의존하는 순수 함수"
+const negate = (num) => {
+  return num * -1;
+}
+```
+
+```js title="Pure Function" subtitle="외부 변수에 의존하는 불순 함수"
+let num = 10;
+
+const negate = () => {
+  return num * -1;
+}
+```
+
+```js title="Pure Function" subtitle="maxNum이 다른곳에서 바뀐다면?"
+let maxNum = 5;
+
+const isGraterThanFive = (num) => {
+  return num > maxNum;
+}
+
+isGraterThanFive(10);
+// true
+```
+
+```js title="Pure Function" subtitle="결과 값이 달라진다."
+const isGraterThanFive = (num) => {
+  return num > maxNum;
+}
+
+maxNum = 20;
+
+isGraterThanFive(10);
+// flase
+```
+
+
+```js title="Pure Function" subtitle="Immutable"
+const replaceSpace = (str) => {
+  return str.replace(/(_|-)/, ' ');
+}
+
+const startCase = (str) => {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+const changePartStartCase = (str) => {
+  return str.split(' ').map(startCase).join(' ')
+}
+```
+
+```js title="Pure Function" subtitle="기존 값을 변경하지 않고, 새로운 값을 반환. 즉, 사이드 이펙트 없음."
+const replaceSpace = (str) => {
+  return str.replace(/(_|-)/, ' ');
+}
+
+const startCase = (str) => {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+const changePartStartCase = (str) => {
+  return str.split(' ').map(startCase).join(' ')
+}
+
+const name = 'leah kelly';
+const startCaseName = changePartStartCase(str);
+
+console.log(name); // 'leah kelly'
+console.log(startCaseName); // 'Leah Kelly'
+```
+
+</CodeSurfer>
+
+---
+
+# Function Composition
+
+함수 합성
+
+---
+
+<CodeSurfer>
+
+```js file=./src/FunctionComposition/1-1.js subtitle="아무 생각없이 만든 함수"
+```
+
+```js file=./src/FunctionComposition/1-2.js subtitle="2의 네 제곱"
+```
+
+```js file=./src/FunctionComposition/1-3.js subtitle="음수 변환"
+```
+
+```js file=./src/FunctionComposition/1-4.js subtitle="더하기 1"
+```
+
+```js 16[7:13],17[7:13],18[7:13] file=./src/FunctionComposition/1-4.js subtitle="변수를 한번 사용하기 때문에 크게 의미가 없다."
+```
+
+```js file=./src/FunctionComposition/1-5.js subtitle="불필요 변수 제거"
+```
+
+```js file=./src/FunctionComposition/1-com.js subtitle="읽기 힘들다..."
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurferColumns themes={[imperativeTheme, fpTheme]}>
+
+<Step subtitle="함수 합성의 수학적 표현">
+
+```js
+(h ・ g ・ f)(x) = h( g( f( x ) ) )
+```
+
+```js
+inc(negate(pow(2, 4)));
+```
+
+</Step>
+
+</CodeSurferColumns>
+
+---
+
+<CodeSurferColumns themes={[imperativeTheme, fpTheme]}>
+
+<Step subtitle="수학적 표현을 읽기 편하게 바꿔줄 compose 함수">
+
+```js file=./src/FunctionComposition/compose.js
+```
+
+```js file=./src/FunctionComposition/1-5.js
+```
+
+</Step>
+
+<Step subtitle="fns: 실행할 함수 목록">
+
+```js 1[18:23] file=./src/FunctionComposition/compose.js
+```
+
+```js 17:19 file=./src/FunctionComposition/compose-1.js
+```
+
+</Step>
+
+<Step subtitle="함수 목록을 넘겨주면 함수를 조합한 새로운 함수를 반환한다.">
+
+```js 2:7 file=./src/FunctionComposition/compose.js
+```
+
+```js file=./src/FunctionComposition/compose-2.js
+```
+
+</Step>
+
+<Step subtitle="반환한 함수는 함수 조합의 파라미터로 넘겨줄 값을 인자로 받는다.">
+
+```js 2[11:17] file=./src/FunctionComposition/compose.js
+```
+
+```js 22[16:19] file=./src/FunctionComposition/compose-3.js
+```
+
+</Step>
+
+<Step subtitle="compose에 넘겨줬던 함수 목록을 reduceRight로 오른쪽 함수부터 실행한 결과를 다음 함수로 넘겨서 실행한다.">
+
+```js 3:6 file=./src/FunctionComposition/compose.js
+```
+
+```js file=./src/FunctionComposition/compose-4.js
+```
+
+</Step>
+
+<Step subtitle="">
+
+```js 3:6 file=./src/FunctionComposition/compose.js
+```
+
+```js file=./src/FunctionComposition/compose-5.js
+```
+
+</Step>
+
+<Step subtitle="">
+
+```js 3:6 file=./src/FunctionComposition/compose.js
+```
+
+```js file=./src/FunctionComposition/compose-6.js
+```
+
+</Step>
+
+<Step>
+
+```js subtitle="그냥 합성"
+inc(negate(pow(2, 4)));
+```
+
+```js subtitle="compose 합성"
+compose(
+  (num) => inc(num),
+  (num) => negate(num),
+  (num1, num2) => pow(num1, num2)
+)
+```
+
+</Step>
+
+</CodeSurferColumns>
+
+---
+
+# Pointfree Style
+
+포인트프리 스타일
+
+---
+
+
+<CodeSurfer>
+
+```js file=./src/FunctionComposition/point-free-1.js
+```
+
+```js 2[3:11],3[3:11],4[3:18] file=./src/FunctionComposition/point-free-1.js subtitle="거슬리는 부분들"
+```
+
+```js 2[12:19] file=./src/FunctionComposition/point-free-1.js subtitle="inc 함수"
+```
+
+```js 2 file=./src/FunctionComposition/point-free-1.js subtitle="inc를 감싼 익명 함수"
+```
+
+```js 2 file=./src/FunctionComposition/point-free-1.js subtitle="inc와 (num) => inc(num) 은 같다"
+```
+
+```js file=./src/FunctionComposition/point-free-2.js subtitle="inc 그대로 사용 가능"
+```
+
+```js file=./src/FunctionComposition/point-free-3.js subtitle="나머지 함수도 바꿔준다."
+```
+
+```js file=./src/FunctionComposition/point-free-com.js"
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurferColumns themes={[imperativeTheme, fpTheme]}>
+
+<Step subtitle="Pointfree Style">
+
+```js
+compose(
+  (num) => inc(num),
+  (num) => negate(num),
+  (num1, num2) => pow(num1, num2)
+)(2, 4); // -15
+```
+
+```js
+compose(
+  inc,
+  negate,
+  pow
+)(2, 4); // -15
+```
+
+</Step>
+
+</CodeSurferColumns>
+
+---
+
+<CodeSurfer>
+
+```js subtitle="compose 함수는 오른쪽 -> 왼쪽으로 흐르는 함수 합성한다. 뭔가 불편..."
+compose( inc, negate, pow )(2, 4); // -15
+```
+
+```js file=./src/FunctionComposition/pipe-1.js subtitle="compose 구현 왼쪽 -> 오른쪽으로 실행하고 싶다."
+```
+
+```js file=./src/FunctionComposition/pipe-2.js subtitle="reduceRight를 reduce로 바꿔만 주면 된다."
+```
+
+```js file=./src/FunctionComposition/pipe.js subtitle="그리고 함수 이름을 pipe로 바꿔주자."
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurferColumns themes={[imperativeTheme, fpTheme]}>
+
+<Step>
+
+```js subtitle="compose"
+compose(inc, negate, pow);
+```
+
+```js subtitle="pipe"
+pipe(pow, negate, inc);
+```
+
+</Step>
+
+</CodeSurferColumns>
+
+---
+
+# Currying
+
+커링
+
+---
+
+<CodeSurferColumns themes={[github, imperativeTheme]}>
+
+<Step>
+
+```markdown title="요구사항"
+1. age 프로퍼티를 지운다.
+2. work 프로퍼티 명을 job으로 바꾼다.
+```
+
+```jsx title="변경 전"
+const person = {
+  name: 'theo.gt',
+  age: 15,
+  work: 'developer'
+};
+```
+
+</Step>
+
+<Step>
+
+```markdown 1 title="요구사항"
+1. age 프로퍼티를 지운다.
+2. work 프로퍼티 명을 job으로 바꾼다.
+```
+
+```jsx title="변경 후"
+const person = {
+  name: 'theo.gt',
+  work: 'developer'
+};
+```
+
+</Step>
+
+<Step>
+
+```markdown 2 title="요구사항"
+1. age 프로퍼티를 지운다.
+2. work 프로퍼티 명을 job으로 바꾼다.
+```
+
+```jsx title="변경 후"
+const person = {
+  name: 'theo.gt',
+  job: 'developer'
+};
+```
+
+</Step>
+
+</CodeSurferColumns>
+
+---
+
+<CodeSurfer>
+
+```js file=./src/Currying/without-cyrring-1.js subtitle="dissoc과 rename 함수를 정의"
+```
+
+```js file=./src/Currying/without-cyrring-2.js subtitle="pipe를 이용해서 구현"
+```
+
+```js 17,18 file=./src/Currying/without-cyrring-2.js subtitle="파라미터가 2개여서 Pointfree Style을 사용할수 없다. 지저분해진다."
+```
+
+```js 17,18 file=./src/Currying/without-cyrring-2.js subtitle="파라미터를 하나로 만들수만 있다면 Pointfree Style을 사용할 수 있다."
+```
+
+</CodeSurfer>
+
+---
+
+# Currying
+
+> 파라미터를 모두 채우지 않는 한 함수로 남아있겠다.
+
+---
+
+<CodeSurfer>
+
+```js file=./src/Currying/with-currying-1.js subtitle="dissoc은 파라미터 두개를 받는다."
+```
+
+```js file=./src/Currying/with-currying-2.js subtitle="첫 번째 파라미터를 미리 받고 나머지 파라미터를 나중에 받아서 실행할 수 있다면 좋겠다."
+```
+
+```js file=./src/Currying/with-currying-3.js subtitle="파라미터 하나를 받아서 두 번째 파라미터를 받는 새로운 함수를 반환해주자."
+```
+
+```js file=./src/Currying/with-currying-4.js subtitle="rename도 같은 방식으로 바꿔주자."
+```
+
+```js 1:17 file=./src/Currying/with-currying-5.js subtitle="처음으로 돌아가자"
+```
+
+```js file=./src/Currying/with-currying-6.js subtitle="dissoc에 지워주고 싶은 age를 미리 넣어주면 person만 받을 수 있는 함수가 된다."
+```
+
+```js file=./src/Currying/with-currying-7.js subtitle="깔끔하게 dissoc을 사용할 수 있다."
+```
+
+```js file=./src/Currying/with-currying-8.js subtitle="rename도 바꿔주고 싶은 property명을 미리 넘겨주자. Pointfree Style로 깔끔해졌다."
+```
+
+```js 1,2,7,8 file=./src/Currying/with-currying-8.js subtitle="Currying: 파라미터를 모두 채우지 않는 한 함수로 남아있겠다."
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer>
+
+```js file=./src/Currying/currying.js
+```
+
+```js 5:7 file=./src/Currying/currying.js subtitle="파라미터 수가 부족하면 일부만 바인딩"
+```
+
+```js 9 file=./src/Currying/currying.js subtitle="파라미터 수가 맞으면 실행"
+```
+
+```js 1:7 file=./src/Currying/with-curry-func.js
+```
+
+</CodeSurfer>
+
+---
+
+# 함수형 스타일 비교
+
+메소드 체이닝 vs 파이프라이닝
+
+---
+
+<CodeSurfer>
+
+```jsx file=./src/CodeStyle/chaining-ex.js title="메소드 체이닝"
+```
+
+```jsx file=./src/CodeStyle/chaining-ex-2.js title="메소드 체이닝" subtitle="LodashWrapper"
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer>
+
+```jsx file=./src/CodeStyle/pipelining-ex.js title="파이프라이닝"
+```
+
+```jsx 3:5,9 file=./src/CodeStyle/pipelining-ex.js title="파이프라이닝"
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurferColumns themes={[imperativeTheme, fpTheme]}>
+
+<Step>
+
+```jsx file=./src/CodeStyle/chaining-ex.js title="메소드 체이닝"
+```
+
+```jsx file=./src/CodeStyle/pipelining-ex.js title="파이프라이닝"
+```
+
+</Step>
+
+<Step>
+
+```jsx 4[3:6],5[3:6],6[3:7],7[3:8] file=./src/CodeStyle/chaining-ex.js title="메소드 체이닝"
+```
+
+```jsx 8[3:7],9[3:7],10[3:10] file=./src/CodeStyle/pipelining-ex.js title="파이프라이닝"
+```
+
+</Step>
+
+<Step>
+
+```jsx file=./src/CodeStyle/chaining-ex.js title="메소드 체이닝" subtitle="단단한 결합"
+```
+
+```jsx file=./src/CodeStyle/pipelining-ex.js title="파이프라이닝" subtitle="느슨한 결합"
+```
+
+</Step>
+
+<Step>
+
+```jsx file=./src/CodeStyle/chaining-ex.js title="메소드 체이닝" subtitle="제한된 표현성"
+```
+
+```jsx file=./src/CodeStyle/pipelining-ex.js title="파이프라이닝" subtitle="유연함"
+```
+
+</Step>
+
+</CodeSurferColumns>
+
+---
+
+<CodeSurferColumns themes={[github, imperativeTheme]}>
+
+<Step>
+
+```markdown title="요구사항"
+1. age 프로퍼티를 지운다.
+2. work 프로퍼티 명을 job으로 바꾼다.
+```
+
+```jsx title="변경 대상"
+const person = {
+  name: 'theo.gt',
+  age: 15,
+  work: 'developer'
+};
+```
+
+</Step>
+
+</CodeSurferColumns>
+
+---
+
+<CodeSurferColumns themes={[imperativeTheme, fpTheme]}>
+
+<Step>
+
+```jsx file=./src/CodeStyle/chaining-1.js title="메소드 체이닝" subtitle="Lodash Wrapper로 만들어준다"
+```
+
+```jsx file=./src/CodeStyle/pipelining-1.js title="파이프라이닝" subtitle="pipe의 시작 파라미터로 만들어준다"
+```
+
+</Step>
+
+<Step subtitle="lodash와 ramda의 omit으로 age를 지운다">
+
+```jsx file=./src/CodeStyle/chaining-2.js title="메소드 체이닝"
+```
+
+```jsx file=./src/CodeStyle/pipelining-2.js title="파이프라이닝"
+```
+
+</Step>
+
+
+<Step>
+
+```jsx file=./src/CodeStyle/chaining-3.js title="메소드 체이닝" subtitle="rename 함수를 끼워 넣을 수 없다."
+```
+
+```jsx file=./src/CodeStyle/pipelining-com.js title="파이프라이닝" subtitle="rename 함수를 정의해서 끼워준다."
+```
+
+</Step>
+
+<Step>
+
+```jsx file=./src/CodeStyle/chaining-com.js  subtitle="age까지만 제거하고 계산한 후 마지막에 rename을 다시 적용한다."
+```
+
+```jsx file=./src/CodeStyle/pipelining-com.js
+```
+
+</Step>
+
+<Step subtitle="메소드 체이닝은 제공되지 않는 메소드 외에는 이어서 붙일 수 없다.">
+
+```jsx file=./src/CodeStyle/chaining-com.js
+```
+
+```jsx file=./src/CodeStyle/pipelining-com.js
+```
+
+</Step>
+
+<Step>
+
+```jsx file=./src/CodeStyle/chaining-com.js subtitle="단단한 결합"
+```
+
+```jsx file=./src/CodeStyle/pipelining-com.js subtitle="느슨한 결합"
+```
+
+</Step>
+
+</CodeSurferColumns>
+
+---
+
+# Functor
+
+펑터
+
+---
+
+<CodeSurfer>
+
+```js file=./src/Functor/box-1.js subtitle="상자를 하나 만듭니다."
+```
+
+```js file=./src/Functor/box-2.js subtitle="값 저장"
+```
+
+```js file=./src/Functor/box-3.js subtitle="Box 인스턴스"
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurferColumns themes={[github, imperativeTheme]}>
+
+<Step>
+
+```markdown title="요구사항"
+1. id를 이용해서 책 찾기.
+2. 찾은 책의 제목 첫글자를 대문자로 변경하기.
+```
+
+```json title="책 목록"
+[
+  { 
+    "id": "book1", 
+    "title": "coding with javascript" 
+    },
+  { 
+    "id": "book2", 
+    "title": "speaking javaScript"
+  },
+];
+```
+
+</Step>
+
+
+</CodeSurferColumns>
+
+---
+
+
+<CodeSurfer>
+
+```js file=./src/Functor/box-4.js
+```
+
+```js file=./src/Functor/box-5.js subtitle="첫 글자 대문자 변환"
+```
+
+```js file=./src/Functor/box-6.js subtitle="property 값 반환"
+```
+
+```js file=./src/Functor/box-7.js subtitle="id와 책 목록을 받아서 id에 해당하는 책 반환"
+```
+
+```js file=./src/Functor/box-8.js subtitle="원하는 결과를 만들 함수 정의"
+```
+
+```js file=./src/Functor/box-9.js subtitle="박스에 책 목록을 넣어줍니다."
+```
+
+```js file=./src/Functor/box-10.js subtitle="박스에 저장된 책 목록을 가지고 책을 찾아줍니다."
+```
+
+```js file=./src/Functor/box-11.js subtitle="찾은 책에서 title 값을 가져옵니다."
+```
+
+```js file=./src/Functor/box-12.1.js subtitle="앞글자만 대문자로 바꿔줍니다."
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer>
+
+```js 33 file=./src/Functor/box-12.1.js subtitle="앞글자만 대문자로 바꿔줍니다."
+```
+
+```js 31 file=./src/Functor/box-12.1.js subtitle="box.\$value"
+```
+
+```js 1:9 file=./src/Functor/box-12.1.js subtitle="상자에 특별한 기능을 넣어봅시다."
+```
+
+```js file=./src/Functor/box-13.js subtitle="map 메소드 추가"
+```
+
+```js 10[7:8] file=./src/Functor/box-13.js subtitle="파라미터로 함수"
+```
+
+```js 11[20:34] file=./src/Functor/box-13.js subtitle="받은 함수를 박스 안의 값에 적용"
+```
+
+```js 11 file=./src/Functor/box-13.js subtitle="함수 결과 값을 다시 한번 박스에 넣고 반환"
+```
+
+```js file=./src/Functor/map-1.1.js subtitle=""
+```
+
+```js file=./src/Functor/map-1.2.js subtitle=""
+```
+
+```js file=./src/Functor/map-1.3.js subtitle=""
+```
+
+```js file=./src/Functor/map-1.4.js subtitle=""
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer>
+
+```js 23,26 file=./src/Functor/map-1.4.js subtitle=""
+```
+
+```js file=./src/Functor/map-2.1.js subtitle=""
+```
+
+```js file=./src/Functor/map-2.2.js subtitle=""
+```
+
+</CodeSurfer>
+
+---
+
+# Functor
+
+> 같은 타입을 반환하는 map 메소드를 구현한 객체
+
+---
+
+<CodeSurfer>
+
+```js 32:39 file=./src/Functor/box-13.js subtitle="map 사용해서 다시 구현"
+```
+
+```js file=./src/Functor/box-14.js
+```
+
+```js file=./src/Functor/box-15.js
+```
+
+```js file=./src/Functor/box-16.js
+```
+
+```js file=./src/Functor/box-17.js
+```
+
+```js file=./src/Functor/box-18.js subtitle="상자를 유지한채로 목적 달성"
+```
+
+</CodeSurfer>
+
+---
+
+# 펑터를 왜 사용할까?
+
+굳이 펑터에 값을 넣어서 사용하는 목적이 뭘까?
+
+---
+
+<CodeSurfer>
+
+```js file=./src/Maybe/problem-1.1.js subtitle="책이 두 권"
+```
+
+```js file=./src/Maybe/problem-1.2.js subtitle="없는 책은 에러"
+```
+
+```js file=./src/Maybe/problem-1.3.js subtitle="findBookById가 undefined 반환"
+```
+
+```js 7:8 file=./src/Maybe/problem-1.4.js subtitle="undefined에서 title을 참조"
+```
+
+```js file=./src/Maybe/problem-1.5.js
+```
+
+```js 6:9 file=./src/Maybe/problem-1.5.js subtitle="prop 함수에서 에러가 났으니 prop 함수를 고쳐주자"
+```
+
+```js file=./src/Maybe/lazy-solution-1.js subtitle="obj 먼저 확인"
+```
+
+```js file=./src/Maybe/lazy-solution-2.js subtitle="그래도 에러"
+```
+
+</CodeSurfer>
+
+---
+
+# Maybe
+
+우아한 에러 처리
+
+---
+
+<CodeSurferColumns themes={[ imperativeTheme, fpTheme]}>
+
+<Step subtitle="Maybe의 상태는 두 가지 값을 갖는다">
+
+```markdown
+Nothing
+```
+
+```markdown
+Just
+```
+
+</Step>
+
+</CodeSurferColumns>
+
+
+---
+
+<CodeSurferColumns>
+
+<Step>
+
+```js subtitle="값이 null or undefined"
+Maybe.of(null) // Nothing
+```
+
+```js subtitle="값이 null or undefined 이 아닌 값"
+Maybe.of('Hello, FP') // Just('Hello, FP')
+```
+
+</Step>
+
+</CodeSurferColumns>
+
+---
+
+<CodeSurfer>
+
+```js file=./src/Maybe/maybe-1.1.js subtitle="Box 펑터"
+```
+
+```js file=./src/Maybe/maybe-1.2.js
+```
+
+```js file=./src/Maybe/maybe-1.3.js subtitle="Maybe 상태"
+```
+
+```js file=./src/Maybe/maybe-1.4.js subtitle="상태에 따른 map 동작"
+```
+
+```js 30 file=./src/Maybe/maybe-1.5.js
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer>
+
+```js 30 file=./src/Maybe/maybe-1.5.js
+```
+
+```js 30 file=./src/Maybe/maybe-1.6.js
+```
+
+```js file=./src/Maybe/maybe-1.7.js
+```
+
+```js 15 file=./src/Maybe/maybe-1.7.js subtitle="Nothing은 map을 건너뛴다"
+```
+
+```js file=./src/Maybe/maybe-1.8.js subtitle="에러 없이 프로그램 정상 종료"
+```
+
+</CodeSurfer>
+
+---
+
+# Railway Oriented Programming
+
+<Image src={roo} style={{backgroundSize: 'auto'}}/>
+
+---
+
+<CodeSurfer>
+
+```js file=./src/Maybe/get-or-else-1.js
+```
+
+```js 15,16 file=./src/Maybe/get-or-else-1.js subtitle="결과 값은 Maybe 펑터"
+```
+
+```js file=./src/Maybe/get-or-else-2.js
+```
+
+```js 7[10:39] file=./src/Maybe/get-or-else-2.js subtitle="Nothing이면 기본 값"
+```
+
+```js 7[43:54] file=./src/Maybe/get-or-else-2.js subtitle="Just면 값 반환"
+```
+
+```js file=./src/Maybe/get-or-else-3.js
+```
+
+```js file=./src/Maybe/get-or-else-4.js
+```
+
+```js file=./src/Maybe/get-or-else-5.js
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer>
+
+```jsx 5:22 file=./src/CodeStyle/fp-com.js title="함수형 프로그래밍 스타일"
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurferColumns>
+
+<Step title="메소드 체이닝 vs 파이프라이닝">
+
+```jsx file=./src/CodeStyle/chaining-com.js subtitle="단단한 결합"
+```
+
+```jsx file=./src/CodeStyle/pipelining-com.js subtitle="느슨한 결합"
+```
+
+</Step>
+
+</CodeSurferColumns>
+
+---
+
+<CodeSurfer>
+
+```js file=./src/Currying/with-curry-func.js title="Currying, Pointfree Style"
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer>
+
+```js file=./src/Maybe/get-or-else-5.js title="Maybe Functor"
+```
+
+</CodeSurfer>
+
+---
+
+# Q & A
+
+More 👉 https://velog.io/@nakta/series/FP-in-JS
+
+---
+
+# 고맙습니다 😃
