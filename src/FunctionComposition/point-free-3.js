@@ -1,5 +1,1 @@
-compose(
-  inc,
-  negate,
-  pow
-)
+compose( inc, negate, pow )

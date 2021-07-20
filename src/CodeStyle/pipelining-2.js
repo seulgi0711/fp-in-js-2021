@@ -1,3 +1,5 @@
-R.pipe(
-  R.omit(['age']),
+import { omit, pipe } from 'lodash/fp';
+
+pipe(
+  omit(['age']),
 )(person)

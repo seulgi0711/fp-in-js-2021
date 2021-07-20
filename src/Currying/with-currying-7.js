@@ -18,4 +18,5 @@ const person = {
 
 pipe(
   dissoc('age'),
+  (person) => rename({work: 'job'}, person)
 )(person);

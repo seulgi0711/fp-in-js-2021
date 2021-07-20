@@ -1,11 +1,7 @@
-import R from 'ramda';
+import {identity, map, pipe, replace, startCase} from 'lodash/fp';
 
-const startCase = (str) => {
-  return R.replace(/(\b\w(?!\s))/g, R.toUpper, str);
-}
-
-R.pipe(
-  R.map(R.replace(/(_|-)/, ' ')),
-  R.map(startCase),
-  R.sortBy(R.identity)
+pipe(
+  map(replace(/(_|-)/, ' ')),
+  map(startCase),
+  sortBy(identity)
 )(names);

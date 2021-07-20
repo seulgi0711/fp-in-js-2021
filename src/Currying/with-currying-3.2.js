@@ -4,6 +4,6 @@ const dissoc = (dissocKey) => {
   }
 };
 
-const dissocAge = dissoc('age');
+const dissocAgeFunc = dissoc('age');
 
 dissocAge(person);

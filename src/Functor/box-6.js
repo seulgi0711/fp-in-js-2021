@@ -13,9 +13,9 @@ const books = [
   { id: 'book2', title: 'speaking javaScript' },
 ];
 
-const startCase = (str) => {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-};
+const findBookById = curry((id, books) => {
+  return books.find((book) => book.id === id);
+});
 
 const prop = curry((propName, obj) => {
   return obj[propName];
