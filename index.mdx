@@ -30,7 +30,7 @@ theo.gt
 
 이런 단어들과 연관해서 '어렵다', '새로운 패러다임이다' 라고 생각하시는 분들도 계실겁니다.
 
-그리고 완벽하게 반대라고 하기는 그렇지만 함수형 프로그래밍과 같이 자주 비교되는 'OOP'같은 단어들도 있습니다.
+그리고 완벽하게 반대라고 하기는 그렇지만 함수형 프로그래밍과 같이 자주 비교되는 '절차지향형 프로그래밍'같은 단어들도 있습니다.
 
 그래서 오늘 이런 여러가지 개념들을 최대한 이해하기 쉽게 풀어서 같이 한번 살펴보도록 하겠습니다.
 
@@ -44,7 +44,6 @@ theo.gt
   <li>Code Style</li>
   <li>Function Composition</li>
   <li>Pointfree Style & Currying</li>
-  <li>Functional Programming Styles</li>
   <li>Functor & Error Handling</li>
 </ul>
 
@@ -55,8 +54,6 @@ theo.gt
 함수형 프로그래밍이 어떻게 생겼는지 살펴볼거구요.
 
 그리고 함수 합성, 포인트프리 스타일과 커링.
-
-함수형 프로그래밍의 스타일
 
 펑터와 에러처리
 
@@ -90,9 +87,7 @@ theo.gt
 
 자 여기 한가지 예제를 가지고 살펴볼게요.
 
-FP 스터디에 참가할 사람들에게 신청을 받아서 각자의 이름을 받은 목록이 있다고 가정하겠습니다.
-
-그런데 각자 입력을 해서 그런지 이름을 쓴 규칙이 다 달라서 통일성이 없습니다.
+여기 이름 목록이 있습니다. 그런데 입력한 형태가 통일성이 없습니다.
 
 </Notes>
 
@@ -158,11 +153,11 @@ FP 스터디에 참가할 사람들에게 신청을 받아서 각자의 이름�
 
 그래서 이름 목록을 요구사항에 맞게 변경할 에정인데요.
 
-첫 번째로 성과 이름은 공백으로 구분한다 입니다.
+첫 번째로 성과 이름은 공백으로 구분하려고 합니다.
 
-언더바와 대시 문자를 공백으로 맞춰주는 작업을 할 예정입니다. [enter]
+언더바와 대시 문자를 공백으로 맞춰주는 작업을 할 거구요. [enter]
 
-그리고 두 번째로 성과 이름은 대문자로 시작한다.
+그리고 두 번째로 성과 이름은 대문자로 시작하도록 작업을 할 겁니다.
 
 (4번째 가리키며) 이런 형태로 바꿔줄 예정입니다. [enter]
 
@@ -561,7 +556,9 @@ const returnFunction = () => {
 
 <Notes>
 
-함수형 프로그래밍의 특징 중 하나는 일급 함수라는 점인데요. 함수를 변수와 같이 사용할 수 있다는 뜻입니다.
+함수형 프로그래밍의 특징 중 하나는 일급 함수를 사용한다는 점인데요.
+
+일급 함수라는 뜻은 함수를 변수와 같이 사용할 수 있다는 뜻입니다.
 
 자바스크립트에서 함수를 선언할 때 이렇게 선언할 수 있습니다. [enter]
 
@@ -642,7 +639,7 @@ const changePartStartCase = (str) => {
 }
 
 const name = 'leah kelly';
-const startCaseName = changePartStartCase(str);
+const startCaseName = changePartStartCase(name);
 
 console.log(name); // 'leah kelly'
 console.log(startCaseName); // 'Leah Kelly'
@@ -656,14 +653,14 @@ console.log(startCaseName); // 'Leah Kelly'
 
 여기 negate라는 함수가 있는데요. 이 함수는 파라미터로 받는 num이라는 값에만 의존하고 있습니다. 이런 함수를 순순함수 라고 합니다. [enter]
 
-그에 반해, 이 negate 함수는 함수 밖에 있는 변수 값에 의존하고 있습니다. 이런 함수를 불순 함수라고 부릅니다. 이런 경우 num 값이 다른곳에서 바뀌게 되면 함수의 결과가 매번 달리지게 되겠죠. [enter]
+그에 반해, 이 negate 함수는 함수 밖에 있는 변수 값에 의존하고 있습니다. 이런 함수를 불순 함수라고 부릅니다. 이런 경우 num 값이 다른곳에서 바뀌게 되면 함수의 결과가 매번 달리지게 되겠죠. 이런 예제를 하나 들면 [enter]
 
 여기 isGraterThanFive 이라는 함수가 있습니다. 파라미터로 넘긴 숫자 값이 maxNum인 5보다 큰지 확인하는 함수인데요. 지금 이렇게 10을 넘기면 5보다 크기 때문에 ture가 됩니다. 그런데 maxNum이 어딘가에서 바뀐다면 어떻게 될까요? [enter]
 
-이렇게 20으로 바뀌게 되면 같은 숫자인 10을 넘겨도 결과는 달라지게 됩니다. 이런 부분들이 의도치 않은 사이드이펙트를 발생시키게 됩니다. [enter]
+이렇게 20으로 바뀌게 되면 같은 숫자인 10을 넘겨도 결과는 달라지게 됩니다. 이런 부분들이 의도치 않은 사이드이펙트를 발생시키는 부분이겠죠. [enter]
 
-순수함수는 이렇게 외부 값에 의존하지 않고 외부 값을 바꾸지도 않습니다.
-이런 특성을 Immutable이라고 합니다.
+그리고 순수함수는 파라미터로 받은 값도 변경하지 않습니다. 이런 특성을 Immutable이라고 합니다.
+
 여기 있는 세가지 함수는 모두 str이라는 변수를 받지만 str 변수 자체의 값을 변경하지 않고 새로운 문자열을 만들어서 반환하게 됩니다. [enter]
 
 그래서 name을 changePartStartCase라는 함수에 넘긴 후 name과 함수 결과값을 로그로 찍어보면 기존 name은 그대로 있고 새로운 문자열이 반환된것을 볼 수 있습니다.
@@ -680,7 +677,9 @@ console.log(startCaseName); // 'Leah Kelly'
 
 다음은 함수합성에 대한 얘기를 해볼까 합니다.
 
-말 그대로 여러 작은 함수를 합성해서 데이터를 변경하는 작업을 의미합니다.
+함수형 프로그래밍은 뭔가 대단한 개념이 아니라 단순히 작은 함수들을 조합해서 원하는 목적을 만들어낸다고 생각하시면 되는데요.
+
+이런 합수를 조합하는 행동을 함수 합성이라고 부르고 함수합성 방법에 대해서 살펴보도록 하겠습니다.
 
 </Notes>
 
@@ -713,7 +712,7 @@ console.log(startCaseName); // 'Leah Kelly'
 
 <Notes>
 
-여기 그냥 몇가지 함수를 정의했습니다. [enter]
+여기 그냥 몇가지 함수를 정의했습니다. 제곱을 하는 함수, 음수로 만드는 함수, 1을 더하는 함수가 있습니다. [enter]
 
 2의 네 제곱을 해서 powered라는 변수에 저장합니다. [enter]
 
@@ -727,8 +726,9 @@ console.log(startCaseName); // 'Leah Kelly'
 이런 형태는 가장 안쪽부터 바깥쪽으로 코드를 읽어 나가야 합니다.
 익숙한 형태는 아닙니다. [enter]
 
-그런데 이런 형태로 적용해야 하는 함수가 더 많아진다고 하면 어떨까요? 읽기가 더욱 힘들어지겠죠?
-그리고 이런 형태는 우리 모두가 어렸을적 수학시간에 배웠던 수학적인 함수 합성 표현법과 비슷하다는 느낌도 듭니다. [enter]
+그런데 이런 형태로 적용해야 하는 함수가 더 많아진다고 하면 어떨까요? 읽기가 더욱 힘들어 집니다.
+
+그리고 이런 형태는 우리 모두가 어렸을적 수학시간에 배웠던 수학적인 함수 합성 표현법과 같습니다. [enter]
 
 </Notes>
 
@@ -753,7 +753,9 @@ inc(negate(pow(2, 4)));
 
 <Notes>
 
-그래서 더 거부감이 드는것 같아요.
+여기 왼족에서 오른쪽에 해당하는 부분이 지금 오른쪽 코드와 같은 형태를 띄고 있습니다.
+
+안쪽부터 적용을 해 나가는 모습입니다.
 
 </Notes>
 
@@ -796,7 +798,7 @@ inc(negate(pow(2, 4)));
 ```js 2[11:17] file=./src/FunctionComposition/compose.js
 ```
 
-```js 22[16:19] file=./src/FunctionComposition/compose-3.js
+```js 22 file=./src/FunctionComposition/compose-3.js
 ```
 
 </Step>
@@ -851,7 +853,7 @@ compose(
 
 <Notes>
 
-이런 거부감이 드는 수학적 표현 코드 스타일을 읽기 편하게 바꿔줄 수 있는 함수를 하나 만들어 사용합니다.
+이런 수학적 표현 방식을 읽기 편하게 바꿔줄 수 있는 함수를 하나 만들어 사용해보겠습니다.
 
 이 함수의 이름은 compose 인데요. [enter]
 
@@ -917,6 +919,7 @@ compose 함수는 파라미터로 실행할 함수 목록을 받습니다. [ente
 
 <Notes>
 
+
 지 여기 compose 형태의 합성입니다. [enter]
 
 그런데 여기보면 저는 조금 거슬리는 부분이 있는것 같습니다. 왜그런가 하면 [enter]
@@ -937,7 +940,23 @@ compose 함수는 파라미터로 실행할 함수 목록을 받습니다. [ente
 
 <CodeSurferColumns themes={[imperativeTheme, fpTheme]}>
 
-<Step subtitle="Pointfree Style">
+<Step>
+
+```js subtitle="변경 전"
+compose(
+  (num) => inc(num),
+  (num) => negate(num),
+  (num1, num2) => pow(num1, num2)
+)(2, 4); // -15
+```
+
+```js subtitle="변경 후"
+compose( inc, negate, pow )(2, 4); // -15
+```
+
+</Step>
+
+<Step>
 
 ```js
 compose(
@@ -947,12 +966,8 @@ compose(
 )(2, 4); // -15
 ```
 
-```js
-compose(
-  inc,
-  negate,
-  pow
-)(2, 4); // -15
+```js subtitle="Pointfree Style"
+compose( inc, negate, pow )(2, 4); // -15
 ```
 
 </Step>
@@ -961,11 +976,13 @@ compose(
 
 <Notes>
 
-그리고 이런 스타일의 코드를 이번장의 주제인 포인트 프리 스타일이라고 부릅니다.
+처음 구현했던 코드와 거슬리는 부분을 제거한 코드입니다.
 
-포인트 프리 스타일은 왼쪽 코드와 비교해보면 파라미터 정보를 표현하지 않는 형태입니다.
+여기 두 코드의 큰 차이점은 파라미터 정보를 숨겼다는 점인데요. [enter]
 
-이런 형태의 코드 스타일을 사용하면 불필요한 파라미터 정보를 제거할 수 있어서 복잡해 보일 수 있는 코드를 간단하게 만들 수 있습니다.
+이런 스타일의 코드를 바로 포인트프리 스타일이라고 부릅니다. 이런 단어 자체가 중요한게 이나리 이런 방식으로 사용할 수 있다는 점만 알고 넘어가시면 될것 같습니다.
+
+포인트프리 스타일 코드는 불필요한 파라미터 정보를 제거할 수 있어서 복잡해 보일 수 있는 코드를 간단하게 만들 수 있습니다.
 
 </Notes>
 
@@ -977,13 +994,20 @@ compose(
 compose( inc, negate, pow )(2, 4); // -15
 ```
 
-```js file=./src/FunctionComposition/pipe-1.js subtitle="compose 구현 왼쪽 -> 오른쪽으로 실행하고 싶다."
+```js subtitle="compose 구현 왼쪽 -> 오른쪽으로 실행하고 싶다."
+compose( inc, negate, pow )(2, 4); // -15
 ```
 
-```js file=./src/FunctionComposition/pipe-2.js subtitle="reduceRight를 reduce로 바꿔만 주면 된다."
+```js file=./src/FunctionComposition/pipe-1.js subtitle="기존 compose 구현"
 ```
 
-```js file=./src/FunctionComposition/pipe.js subtitle="그리고 함수 이름을 pipe로 바꿔주자."
+```js 3 file=./src/FunctionComposition/pipe-1.js subtitle="reduceRight"
+```
+
+```js file=./src/FunctionComposition/pipe-2.js
+```
+
+```js file=./src/FunctionComposition/pipe.js
 ```
 
 </CodeSurfer>
@@ -994,7 +1018,11 @@ compose( inc, negate, pow )(2, 4); // -15
 
 사람에 따라 다르겠지만 저는 뭔가 좀 불편한 느낌이 드는것 같습니다. [enter]
 
-그래서 이 순서를 왼쪽에서 오른쪽으로 실행하도록 바꾸고 싶은데요. 그러려면 여기 reduceRight를 reduce로만 바꿔주면 됩니다. [enter]
+그래서 이 순서를 왼쪽에서 오른쪽으로 실행하도록 바꾸고 싶은데요. [enter]
+
+그러기 위해서 compose 구현을 조금 바꿔주도록 하겠습니다. [enter]
+
+함수 실행이 역순으로 되는 이유는 이부분에 있는 reduceRight 때문입니다. 그래서 이부분을 reduce로 바꿔주면 됩니다. [enter]
 
 그리고 함수명을 pipe로 바꿔줍니다.
 
@@ -1006,11 +1034,11 @@ compose( inc, negate, pow )(2, 4); // -15
 
 <Step>
 
-```js subtitle="compose"
+```js subtitle="오른쪽 -> 왼쪽"
 compose(inc, negate, pow);
 ```
 
-```js subtitle="pipe"
+```js subtitle="왼쪽 -> 오른쪽"
 pipe(pow, negate, inc);
 ```
 
@@ -1022,7 +1050,9 @@ pipe(pow, negate, inc);
 
 이렇게 하면 기존 compose 방식은 오른쪽에서 왼쪽으로 실행하는 반면, pipe 함수는 왼쪽에서 오른쪽으로 뭔가 좀더 자연스러운 방향으로 실행할 수 있게 됩니다.
 
-이 이후로 나오는 예제에서는 모두 pipe를 사용해서 함수 합성을 진행하도록 하겠습니다.
+방향은 사실 개인 취향에 따라 다른거기 때문에 아무거나 사용해도 되겠지만
+
+저는 개인적으로 pipe 방식이 더 편하기 때문에 이 이후로 나오는 예제에서는 모두 pipe를 사용해서 함수 합성을 진행하도록 하겠습니다.
 
 </Notes>
 
@@ -1115,7 +1145,7 @@ const person = {
 ```js file=./src/Currying/without-cyrring-2.js subtitle="pipe를 이용해서 구현"
 ```
 
-```js 17,18 file=./src/Currying/without-cyrring-2.js subtitle="파라미터가 2개여서 Pointfree Style을 사용할수 없다. 지저분해진다."
+```js 17,18 file=./src/Currying/without-cyrring-2.js
 ```
 
 ```js 17,18 file=./src/Currying/without-cyrring-2.js subtitle="파라미터를 하나로 만들수만 있다면 Pointfree Style을 사용할 수 있다."
@@ -1133,13 +1163,13 @@ const person = {
 첫번째로 dissoc을 가지고 age를 지워주구요.
 두 번째로 rename을 이용해서 work를 job으로 바꾸도록 처리하고 있습니다. [enter]
 
-그런데 여기서 아까 봤던 파라미터를 생략한 포인트프리 스타일이 불가능합니다.
-왜냐하면 익명함수에 받는 파라미터 수와 dissoc과 rename이 받는 파라미터 수가 다르기 때문입니다.
-뭔가 저는 좀 지저분해보이는것 같습니다. [enter]
+그런데 여기서는 아까 알아봤던 포인트프리 스타일을 사용하지 않았습니다. 왜그럴까요?
 
-dissoc과 rename의 파라미터를 하나로 만들수만 있다면 Pointfree Style을 사용할 수 있을것 같습니다.
+왜냐하면 여기 익명함수에 받는 파라미터 수와 dissoc, rename 함수가 받는 파라미터 수가 다르기 때문입니다.
 
-여기서 등장하는 것이 바로 커링입니다. [enter]
+그런데 [enter] dissoc과 rename의 파라미터를 하나로 만들수만 있다면 포인트프리 스타일을 사용할 수 있을것 같습니다.
+
+그럼 이 파라미터 두개짜리 함수를 어떻게 파라미터 하나짜리 함수로 만들 수 있을까요? 여기서 등장하는 것이 바로 커링입니다. [enter]
 
 
 </Notes>
@@ -1160,24 +1190,55 @@ dissoc과 rename의 파라미터를 하나로 만들수만 있다면 Pointfree S
 
 ---
 
+
 <CodeSurfer>
 
 ```js file=./src/Currying/with-currying-1.js subtitle="dissoc은 파라미터 두개를 받는다."
 ```
 
-```js file=./src/Currying/with-currying-2.js subtitle="첫 번째 파라미터를 미리 받고 나머지 파라미터를 나중에 받아서 실행할 수 있다면 좋겠다."
+```js file=./src/Currying/with-currying-2.1.js subtitle="첫 번째 파라미터를 미리 받는다."
 ```
 
-```js file=./src/Currying/with-currying-3.js subtitle="파라미터 하나를 받아서 두 번째 파라미터를 받는 새로운 함수를 반환해주자."
+```js file=./src/Currying/with-currying-2.2.js subtitle="나머지 파라미터를 넘겨서 실행한다."
+```
+
+```js 1:3 file=./src/Currying/with-currying-3.1.js
+```
+
+```js file=./src/Currying/with-currying-3.2.js subtitle="파라미터 하나를 받아서 두 번째 파라미터를 받는 새로운 함수를 반환해주자."
 ```
 
 ```js file=./src/Currying/with-currying-4.js subtitle="rename도 같은 방식으로 바꿔주자."
 ```
 
-```js 1:17 file=./src/Currying/with-currying-5.js subtitle="처음으로 돌아가자"
+</CodeSurfer>
+
+<Notes>
+
+여기보시면 dissoc은 파라미터를 두개 받습니다. [enter]
+
+그런데 이 코드처럼 첫번째 파라미터인 'age'만 먼저 넘겨주고, [enter]
+
+이후에 나머지 파라미터를 받아서 실행할수 있다면 'age'만 미리 바인딩해서 파라미터 하나를 받는 함수로 만들어 줄 수 있을것 같습니다.
+
+그러면 파라미터 수가 맞아서 포인트프리 스타일로 사용할 수 있습니다. [enter]
+
+이걸 구현하기 위해서 dissoc의 구현을 조금 바꿔줍니다. [enter]
+
+먼저 파라미터를 하나만 받는 함수로 바꿔주구요. 이 함수의 리턴 값으로 나머지 파라미터를 받는 함수를 반환해줍니다. [enter]
+
+rename도 같은 방식으로 바꿔줍니다. [enter] [enter]
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```js 7:11 file=./src/Currying/with-currying-4.js subtitle="rename도 같은 방식으로 바꿔주자."
 ```
 
-```js file=./src/Currying/with-currying-6.js subtitle="dissoc에 지워주고 싶은 age를 미리 넣어주면 person만 받을 수 있는 함수가 된다."
+```js 19:22 file=./src/Currying/with-currying-6.js subtitle="dissoc에 지워주고 싶은 age를 미리 넣어주면 person만 받을 수 있는 함수가 된다."
 ```
 
 ```js file=./src/Currying/with-currying-7.js subtitle="깔끔하게 dissoc을 사용할 수 있다."
@@ -1193,26 +1254,17 @@ dissoc과 rename의 파라미터를 하나로 만들수만 있다면 Pointfree S
 
 <Notes>
 
-여기보시면 dissoc은 파라미터를 두개 받습니다. [enter]
+그럼 이렇게 바꿔준 함수를 가지고 다시 한번 구현해 보겠습니다. [enter]
 
-그런데 이런 형태를 첫번째 파라미터인 'age'를 미리 받고 나머지 파라미터를 이후에 받아서 실행할 수만 있으면 이 코드와 같이 하나의 파라미터를 받는 함수로 만들 수 있습니다.
-그러면 포인트프리 스타일로 사용할 수 있을것 같은데요. [enter]
+dissoc에 age를 먼저 넘겨주면 person만 받는 새로운 함수가 반환됩니다. [enter]
 
-이걸 구현하기 위해서 dissoc의 구현을 조금 바꿔줩니다. 먼저 파라미터를 하나만 받는 함수로 바꿔주구요. 이 반환값은 나머지 파라미터를 받는 함수를 반환해줍니다. 세부 구현은 이전과 같겠죠. [enter]
-rename도 같은 방식으로 바꿔줍니다. [enter]
+그리고 rename도 같은 방식으로 사용하면 우리가 원했던 포인트 프리 스타일로 사용할 수 있습니다. [enter]
 
-[etner] (한번 더)
+이렇게 원래 2개의 파라미터를 받는 함수를 하나씩 잘라서 파라미터를 받을수 있도록 처리하는 기법을 커링이라고 합니다. 
 
-그리고 dissoc에 age를 먼저 넣어주면 person만 받는 새로운 함수가 반환됩니다. [enter]
-그러면 이렇게 깔끔하게 사용할 수 있습니다. [enter] rename도 같은 방식으로 사용하면 우리가 원했던 포인트 프리 스타일로 사용할 수 있습니다. [enter]
+그런데 지금은 이렇게 파라미터가 2개라서 직접 커링으로 구현하기가 쉬웠지만 매번 모든 함수를 이렇게 커링하거나 파라미터 많은 함수를 직접 커링하기는 너무 힘들기 때문에
 
-여기서 본것 처럼 두개의 파라미터를 받는 함수에서 하나만 채워서 나머지 파라미터를 받는 함수를 반환하기 때문에
-
-'파라미터를 모두 채우지 않는한 함수로 남아있겠다'는 표현이 되는 겁니다.
-
-그런데 모든 함수를 이렇게 수동으로 커링하기는 너무 힘들기 때문에 함수를 자동으로 커링해줄 헬퍼함수를 하나 만들어 줍니다.
-
-
+자동으로 커링을해줄 헬퍼 함수를 만들어 줍니다.
 </Notes>
 
 ---
@@ -1241,7 +1293,11 @@ rename도 같은 방식으로 바꿔줍니다. [enter]
 
 그렇지 않고 파라미터 수가 맞아 떨어지면 그대로 실행하도록 구현한 부분입니다. [enter]
 
-그래서 이렇게 dissoc과 rename을 curry 함수로 감싸서 커링된 함수로 만들어줄 수 있습니다.
+이 함수를 이용하면 dissoc과 rename을 직접 커링 해주던 부분을 자동으로 버꿔서 사용할 수 있습니다.
+
+자 이렇게 커링을 사용하면 파라미터를 하나로 만들어줄 수 있기 때문에 함수합성시에 포인트프리 스타일로 코드를 작성할 수 있어서
+
+좀 더 깔끔한 코드를 만들 수 있습니다.
 
 </Notes>
 
@@ -1253,17 +1309,15 @@ rename도 같은 방식으로 바꿔줍니다. [enter]
 
 <Notes>
 
-다음으로 함수형 프로그래밍 스타일에는 메소드 체이닝과 파이프라이닝이 있는데요.
+다음으로 함수형 프로그래밍 스타일 비교에 대한 내용인데요.
 
-지금까지 pipe나 compose를 사용한 방식이 파이프라이닝 방식입니다. 그리고 메소드 체이닝 방식은 맨 처음 살펴봤던 예제에서 나왔는데요.
+함수형 프로그래밍에서 함수를 합성할 때 두가지 방식이 있습니다.
 
-이 두가지 스타일을 한번 비교해 보도록 하겠습니다.
+하나는 메소드 체이닝이고 또 하나는 파이프라이닝입니다.
 
-간단하고 자주 쓰이는 함수를 제공하는 라이브러리가 있는데요. 대표적으로 많이 사용하는 lodash와, 함수형 프로그래밍에 최적화 된 ramdajs를 가지로 비교해보도록 하겠습니다.
+지금까지 살펴봤던 pipe나 compose를 사용한 방식이 파이프라이닝 방식이고, 메소드 체이닝 방식은 맨 처음 살펴봤던 예제에서 나왔었는데요.
 
-두 가지 모두 간단하면서도 유용한 함수들을 제공하는데요. 대표적인 예로 아까 예제에서 봤던 replace, startCase, join, split 등등 많은 기능을 제공합니다.
-
-이 두가지 라이브러리를 이용해서 어떤 차이가 있는지 살펴보겠습니다.
+이 두가지 스타일을 비교해보고 어떤 부분에서 차이가 있는지 살펴보겠습니다.
 
 </Notes>
 
@@ -1281,15 +1335,19 @@ rename도 같은 방식으로 바꿔줍니다. [enter]
 
 <Notes>
 
-메소드 체이닝은 lodash를 가지고 설명하겠습니다.
+메소드 체이닝은 lodash라는 라이브러리르 가지고 진행을 할건데요.
 
-lodash의 chain이라는 함수를 이용해서 메소드 체이닝을 시작합니다.
+로대시는 간단하면서도 유용한 여러 유틸 함수를 제공합니다.
 
-이후 점(.)을 이용해 지속적으로 체이닝을 이어 나가며 데이터를 처리해 나가는데요.
+뿐만 아니라 LodashWrapper라는 객체를 이용해서 체이닝을 제공하기 때문에 이 라이브러리를 가지고 설명을 하겠습니다.
 
-마지막에 value를 호출해서 최종적으로 값을 추출해 냅니다.
+lodash는 chain이라는 함수를 이용해서 메소드 체이닝을 시작합니다.
 
-_.chain에 names을 파라미터로 호출 하면 LodashWrapper 라는 객체가 반환됩니다. [enter]
+그리고 점(.)을 이용해 체이닝을 이용해 데이터를 처리하는데요.
+
+마지막에 value를 호출해서 최종적으로 값을 계산하도록 합니다.
+
+_.chain에 names을 파라미터로 호출 하면 내부적으로 names를 들고있는 LodashWrapper 라는 객체가 반환됩니다. [enter]
 
 이 LodashWrapper에서 제공하는 map, sort, value와 같은 메소드를 사용해서 체이닝을 이어 나가게 됩니다.
 
@@ -1302,20 +1360,18 @@ _.chain에 names을 파라미터로 호출 하면 LodashWrapper 라는 객체가
 ```jsx file=./src/CodeStyle/pipelining-ex.js title="파이프라이닝"
 ```
 
-```jsx 3:5,9 file=./src/CodeStyle/pipelining-ex.js title="파이프라이닝"
+```jsx 4:6 file=./src/CodeStyle/pipelining-ex.js title="파이프라이닝"
 ```
 
 </CodeSurfer>
 
 <Notes>
 
-파이프라이닝은 ramdajs 라이브러리를 사용했습니다.
+파이프라이닝은 lodash의 함수형 프로그래밍 모듈인 lodash/fp를 사용했습니다.
+
+lodash/fp에 있는 모든 함수는 기본적으로 커링이 돼있기 때문에 포인트 프리 스타일을 사용할 수 있습니다. [enter]
 
 pipe 라는 함수에 처리할 로직 함수들을 전달하고 마지막으로 names를 전달해서 처리합니다.
-
-파이프라이닝도 마찬가지로 위에서부터 아래로 처리 결과를 흘려보내주면서 최종적으로 결과를 반환합니다. [enter]
-
-ramdajs에서는 startCase 함수를 제공하지 않아 직접 구현해서 사용했습니다.
 
 </Notes>
 
@@ -1338,7 +1394,8 @@ ramdajs에서는 startCase 함수를 제공하지 않아 직접 구현해서 사
 ```jsx 4[3:6],5[3:6],6[3:7],7[3:8] file=./src/CodeStyle/chaining-ex.js title="메소드 체이닝"
 ```
 
-```jsx 8[3:7],9[3:7],10[3:10] file=./src/CodeStyle/pipelining-ex.js title="파이프라이닝"
+
+```jsx 4[3:5],5[3:5],6[3:8] file=./src/CodeStyle/pipelining-ex.js title="파이프라이닝"
 ```
 
 </Step>
@@ -1460,16 +1517,6 @@ const person = {
 
 </Step>
 
-<Step subtitle="메소드 체이닝은 제공되지 않는 메소드 외에는 이어서 붙일 수 없다.">
-
-```jsx file=./src/CodeStyle/chaining-com.js
-```
-
-```jsx file=./src/CodeStyle/pipelining-com.js
-```
-
-</Step>
-
 <Step>
 
 ```jsx file=./src/CodeStyle/chaining-com.js subtitle="단단한 결합"
@@ -1487,21 +1534,21 @@ const person = {
 각각의 방법을 같이 보게 되면. 메소드 체이닝은 LodashWrapper로 만들어 주는 chain 함수로 시작을 합니다.
 그리고 파이프라이닝 방식은 pipe 함수를 사용하게 됩니다. [enter]
 
-age 라는 프로퍼티를 지우기 위해서 LodashWrapper에 있는 omit과 ramd의 omit을 사용합니다. 
+age 라는 프로퍼티를 지우기 위해서 LodashWrapper에 있는 omit과 lodash/fp의 omit을 사용합니다. 
 
 work라는 프로퍼티를 job으로 바꿔줘야 하는데요. [enter]
 
-LodashWrapper에는 프로피터 명을 바꿔주는 메소드를 제공하지 않습니다. 그래서 당장은 바꿀수 있는 방법이 없습니다.
-ramda 또한 마찬가지로 프로퍼티 명을 바꿔주는 함수를 제공하지 않습니다.
+lodash에서는 프로피터 명을 바꿔주는 메소드를 제공하지 않습니다. 그래서 직접 구현해서 사용해야 하는데요.
 
-하지만 파이프라이닝은 그냥 함수를 중간에 끼워 넣기만 하면 되기 때문에 rename이라는 함수를 직접 만들어서 중간에 넣기만 하면 됩니다.  [enter]
+메소드 체이닝 방식은 직접 군현했다고 하더라도 LodashWrapper에서 제공해주는 메소드가 아니기때문에 체이닝을 붙일수가 없습니다.
+
+하지만 파이프라이닝은 그냥 함수를 중간에 끼워 넣기만 하면 되기 때문에 이런식으로 다음 함수로 끼워줄 수 있습니다.  [enter]
 
 결국 메소드 체이닝 방식은 age를 삭제한 결과를 중간에 저장하고, 마지막헤 rename 함수를 이용해 다시한번 요구사항을 만족시켜야 합니다. [enter]
 
-이제 아까 말씀더렸던 단단한 결합과 유연함의 차이를 느끼셨을거라 생각이 듭니다.
+그래서 이런 부분에서 단단한 결합과 유연함의 차이가 생기게 되구요.
 
-결국 두가지 방식의 차이는 유연성의 차이 입니다.
-그래서 파이프라이닝이 어떤 로직을 구현하는데 있어서 조금더 유연하게 구현할수 있다 라는게 더 큰 장점으로 올 수 있습니다.
+결과적으로 파이프라이닝이 어떤 로직을 구현하는데 있어서 조금더 유연하게 구현할수 있다 라는게 큰 장점으로 올 수 있습니다.
 
 </Notes>
 
@@ -1542,7 +1589,7 @@ ramda 또한 마찬가지로 프로퍼티 명을 바꿔주는 함수를 제공�
 
 먼저 상자를 하나 만들어 보도록 하겠습니다.
 
-이 상자 안에 값을 저장할수 있게 조금 바꿔보겠습니다. [enter]
+그리고 이 상자 안에 값을 저장할수 있게 조금 바꿔보겠습니다. [enter]
 
 자, 이렇게 컨스트럭터를 이용해서 값을 받도록 처리하고, 여기서 받은 값을 $value라는 필드에 할당하고 있습니다.
 
@@ -1601,13 +1648,13 @@ box3같은 경우는 먼저 Box.of('FP3')로 박스를 만들고 다시 한번 B
 ```js file=./src/Functor/box-4.js
 ```
 
-```js file=./src/Functor/box-5.js subtitle="첫 글자 대문자 변환"
+```js file=./src/Functor/box-5.js subtitle="id와 책 목록을 받아서 id에 해당하는 책 반환"
 ```
 
 ```js file=./src/Functor/box-6.js subtitle="property 값 반환"
 ```
 
-```js file=./src/Functor/box-7.js subtitle="id와 책 목록을 받아서 id에 해당하는 책 반환"
+```js file=./src/Functor/box-7.js subtitle="첫 글자 대문자 변환"
 ```
 
 ```js file=./src/Functor/box-8.js subtitle="원하는 결과를 만들 함수 정의"
@@ -1629,16 +1676,16 @@ box3같은 경우는 먼저 Box.of('FP3')로 박스를 만들고 다시 한번 B
 
 <Notes>
 
-자, 우선 책 제목의 첫 글자를 대문자로 바꿔줘야 하기 때문에 startCase라는 함수를 만들어 줍니다. [enter]
+자, 우선 책을 찾아야 하기 때문에 책 아이디와 책 목록을 받아서 책을 찾아주는 findBookById를 만들어 줍니다. [enter]
 
 그리고 찾은 책에서 title 값을 가져오기 위해 prop 함수를 만들어 줍니다. [enter]
 객체에서 특정 프로퍼티 이름에 해당하는 값을 반환해주는 함수입니다. [enter]
 
-그리고 책 아이디와 책 목록을 받아서 책을 찾아주는 findBookById를 만들어 줍니다.[enter]
+마지막으로 제목의 첫 글자를 대문자로 바꿔줘야 하기 때문에 startCase라는 함수를 만들어 줍니다. [enter]
 
 그럼 이제 최종 결과를 만들어줄 함수를 작성해보도록 하겠습니다. 이 함수는 id와 책을 파라미터로 받아서 처리 합니다. [enter]
 
-pipe함수를 가지고 박스 안에 books를 넣어 줍니다. [enter]
+pipe함수를 가지고 박스 안에 books를 넣어 줍니다.[enter]
 
 다음으로 우리가 만들었던 책을 찾는 함수인 getBookById를 사용하는데요. 책 목록이 박스 안에 들어있기 때문에 box.$value를 사용해서 책을 찾아 줍니다. [enter]
 
@@ -1691,10 +1738,9 @@ pipe함수를 가지고 박스 안에 books를 넣어 줍니다. [enter]
 
 근데 뭔가 좀 이상하지 않나요? [enter]
 
-상자에 값을 넣고 다시 빼서 쓸거면 뭐하러 상자에 넣을까요?
-저렇게 상자에 넣고 다시 꺼내서 쓸거면 애초에 넣을 필요가 없을것 같습니다.
+상자에 값을 넣었다가 다시 $value로 빼서 사용할꺼면 애초에 넣을필요가 없지 않나 하는 생각이 듭니다.
 
-그래도 적어도 상자에 값을 넣은 행동에 의미가 있게 상자 안에 값을 유지한 상태로 바꿔보도록 하죠. [enter]
+그래서 적어도 상자에 값을 넣은 행동에 의미가 있도록 상자를 유지한 상태로 값을 바꿔보도록 하겠습니다. [enter]
 
 그러려면 상자에 특별한 기능을 붙여줘야 하는데요. [enter] map 이라는 메소드를 하나 추가 하도록 하겠습니다. [enter]
 
@@ -1739,11 +1785,11 @@ map 메소드는 파라미터로 함수를 하나 받습니다. [enter] 그리�
 
 자, 이렇게 만들어보니 박스에 값을 넣고 map 메소드를 이용하면 박스를 유지한 채로 값을 변경할 수 있게 됐습니다.
 
-게다가 반환 값이 박스 인스턴스이므로 반환 값에 다시 map을 이용해서 값을 변경할 수 있습니다.
+게다가 반환 값이 박스 인스턴스이므로 반환 값에 다시 map을 이용해서 값을 변경할 수 있습니다. 메소드 체이닝 방식이죠.
 
-사실은 값을 변경했다기 보다 map 메소드를 이용해서 새로운 박스 인스턴스를 반환했다고 말하는게 더 정확합니다.
+그런데 사실은 박스 안에 있는 값을 변경했다기 보다 map 메소드를 이용해서 새로운 박스 인스턴스를 반환했다고 말하는게 더 정확합니다.
 
-이전 인스턴스의 값에 변경을 가하지 않고 새로운 Box 인스턴스를 만들었으니까요. [enter]
+이전 박스 인스턴스의 값을 변경하지 않고 새로운 Box 인스턴스를 만들었으니까 그런거겠죠. 바로 이부분이 함수형 프로그래밍의 특징중 하나인 순수함수의 immutable이 되겠습니다. [enter]
 
 </Notes>
 
@@ -1755,13 +1801,13 @@ map 메소드는 파라미터로 함수를 하나 받습니다. [enter] 그리�
 
 <Notes>
 
-드디어! 이번 주제인 펑터를 만나게 됐습니다.
+자 이렇게 해서 방금, 이번 주제인 펑터를 만나게 됐습니다.
 
 펑터는 같은 타입을 반환하는 map 메소드를 구현한 객체다 라고 말할 수 있습니다.
 
 방금전과 같이 Box에 다가 map을 사용하게 되면 다시 Box 인스턴스가 반환됐죠.
 
-그래서 박스는 펑터라고 부를수 있게 되는 겁니다.
+그래서 방금 만든 박스는 이제부터 펑터라고 부를수 있게 됐습니다.
 
 </Notes>
 
@@ -1799,7 +1845,7 @@ map 메소드는 파라미터로 함수를 하나 받습니다. [enter] 그리�
 
 그럼 처음 박스에 책 목록을 넣은데부터 다시 시작해 보겠습니다. [enter]
 
-박스 형태를 유지하기 위해서 map 함수를 사용합니다. map 함수에 findBookById를 사용하면 박스 안에 책을 넣은 형태로 반환이 됩니다. [enter]
+여기부터는 박스에 값을 넣었기 때문에 박스 형태를 유지하기 위해서 map 함수를 사용해야 합니다. map 함수에 findBookById를 사용하면 박스 안에 책을 넣은 형태로 반환이 됩니다. [enter]
 
 그리고 책의 제목을 가져오기 위해서 다시 한번 map과 prop 함수를 조합해 줍니다. 그러면 박스 안에는 책 제목이 들어있겠죠? [enter]
 
@@ -1818,6 +1864,10 @@ map 메소드는 파라미터로 함수를 하나 받습니다. [enter] 그리�
 <Notes>
 
 그런데 굳이 이런 펑터같은 객체를 사용하지 않아도 원하는 요구사항을 구현할 수 있는데 왜 굳이 이런 펑터를 사용할까요?
+
+함수형 프로그래밍에서 함수 합성을 할 때 문제가 되는 부분이 있는데요.
+
+바로 예외처리가 힘들다는 점입니다. 상황을 한번 살펴보겠습니다.
 
 </Notes>
 
@@ -1852,17 +1902,15 @@ map 메소드는 파라미터로 함수를 하나 받습니다. [enter] 그리�
 </CodeSurfer>
 
 <Notes>
-함수 합성을 이용해서 함수형 프로그래밍을 할 때 문제가 하나 있습니다.
-바로 예외처리가 힘들다는 점인데요. 상황을 한번 살펴보겠습니다.
 
 위 예제에서 books에는 book1과 book2가 있습니다. 그런데 book3를 찾으려고 하면 어떻게 될까요? [enter]
-안타 깝게도 이런 에러가 발생합니다. 왜일까요?[enter]
+안타 깝게도 이런 에러가 발생하면서 중간에 프로그램이 멈추겠죠. 왜일까요?[enter]
 
 findByBooId에서 book3 라는 아이디로 책을 찾을때 결과로 undefined를 반환합니다. 왜냐면 book3에 해당하는 책이 없으니까요. [enter]
 
 이 반환된 undefined가 prop('title')의 파라미터로 넘어가기 때문에 undefined에서 title 찾도록 실행하게 되죠. [enter]
 
-여기서 에러가 발생하게 됩니다. 그럼 prop 함수에서 에러가 발생했으니 prop에러 예외처리를 해주면 될것 같습니다. [enter]
+여기서 에러가 발생하게 됩니다. 그럼 prop 함수에서 에러가 발생했으니 prop 함수 내에서 예외처리를 해주면 될것 같습니다. [enter]
 
 넘겨받은 obj가 존재하는지 먼저 체크를 해주면 간단히 해결될것 같습니다. 그럼 문제가 해결 될까요? [Enter]
 
@@ -1882,7 +1930,7 @@ findByBooId에서 book3 라는 아이디로 책을 찾을때 결과로 undefined
 
 <Notes>
 
-그래서 이 문제를 해결할 우아한 방법 펑터를 이용한 방법입니다. Maybe도 펑터의 한 종류인데 특별한 기능을 갖는 펑터입니다.
+그래서 이 문제를 우아하게 해결할 방법이 펑터를 이용한 방법입니다. 이 Maybe도 펑터의 한 종류인데요. 아까 살펴봤던 박스보다도 조금 더 특별한 기능을 갖는 펑터입니다.
 
 </Notes>
 
@@ -1903,6 +1951,15 @@ Just
 </Step>
 
 </CodeSurferColumns>
+
+<Notes>
+
+이 메이비라는 펑터는 내부적으로 두 가지 상태값을 갖습니다.
+
+Nothing과 Just입니다.
+
+
+</Notes>
 
 
 ---
@@ -1925,9 +1982,7 @@ Maybe.of('Hello, FP') // Just('Hello, FP')
 
 <Notes>
 
-Maybe는 내부적으로 상태값을 갖습니다. Nothing이나 Just 두가지 상태가 가능힙니다. [enter]
-
-두 가지는 박스 안에 들어있는 값에 따라 결정이 되는데요. 박스 안의 값이 undefined이거나 null인 경우 Nothing 상태가 되고. 그 외에는 Just 상태가 됩니다.
+두 가지 상태는 박스 안에 들어있는 값에 따라 결정이 되는데요. 박스 안의 값이 undefined이거나 null인 경우 Nothing 상태가 되고. 그 외에는 Just 상태가 됩니다.
 
 Maybe.of에 null을 넣어줬기 대문에 Nothing 상태를 갖게 되구요. 오른쪽은 string 값을 넣엇기 때문에 Just안에 값을 가진 상태가 됩니다.
 
@@ -1960,12 +2015,12 @@ Maybe.of에 null을 넣어줬기 대문에 Nothing 상태를 갖게 되구요. �
 
 그리고 maybe 펑터의 상태를 알려주는 isNothing을 구현해 줍니다. 박스 안의 값이 null 이거나 undefined면 Nothing이 되겠죠. [enter]
 
-그리고 이 상태에 따라 map의 구현이 살짝 달라집니다. 
+그리고 조금 특별한 기능이 바로 이부분인데요. 상태에 따라 map의 구현이 살짝 달라집니다. 
 
-Nothing 상태일 경우는 파라미터 받은 fn을 사용하지 않고 자기 자신을 그대로 반환해 줍니다.
-그리고 Nothing이 아닌 Just 상태인 경우는 기존 박스와 마찬가지로 함수를 실행해서 다시 Maybe에 감싸서 반환해 줍니다. [enter]
+Maybe의 Nothing 상태일 경우는 파라미터 받은 fn무시하고 Nothing 상태인 자기 자신을 그대로 반환해 줍니다.
+그리고 Just 상태인 경우는 기존 박스와 마찬가지로 함수를 실행해서 다시 Maybe에 감싸서 반환해 줍니다. [enter]
 
-자 그럼 이전에 구현했던 부분중에 Box를 Maybe로 바꿔보겠습니다.[enter] [enter]
+자 그럼 이전에 구현했던 부분중에 Box를 Maybe로 바꿔보겠습니다.[enter]
 
 </Notes>
 
@@ -1992,6 +2047,8 @@ Nothing 상태일 경우는 파라미터 받은 fn을 사용하지 않고 자기
 </CodeSurfer>
 
 <Notes>
+
+[enter]
 
 그럼 책목록이 null이나 undefined가 아니기 때문에 Just 상태가 되겠죠. [enter]
 
@@ -2154,9 +2211,11 @@ More 👉 https://velog.io/@nakta/series/FP-in-JS
 
 <Notes>
 
-혹시나 오늘 발표한것 외에 더 알고 싶다 하시는 분들은 홍보는 아니지만 에전에 제가 정리했던 블로그 글이 있습니다.
+사실 오늘 더 많은 내용을 하고 싶었는데 그러다가는 한시간을 홀쩍 넘길것 같아서 여기까지 했구요.
 
-한번 방문하셔서 참고하시면 도움이 되시지 않을까 합니다.
+혹시나 오늘 발표한것 외에 더 알고 싶다 하시는 분들은 인터넷 찾아보시면 좋은 글들이 많으니 찾아보셔도 되구요.
+
+에전에 제가 정리했던 블로그 글이 있습니다. 이걸 참고하셔도 좋을것 같습니다.
 
 긴 발표 들어주시느라 고생하셨습니다. 혹시 궁금한점 있으신분 계실까요?
 
@@ -2165,3 +2224,4 @@ More 👉 https://velog.io/@nakta/series/FP-in-JS
 ---
 
 # 고맙습니다 😃
+
