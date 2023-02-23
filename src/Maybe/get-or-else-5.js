@@ -17,7 +17,7 @@ const getUpperBookTitleById = (id, books) => {
   )(books);
 };
 
-// Coading with javascript
+// Coding with javascript
 getUpperBookTitleById('book1', books);
 
 // book3 Not Found
