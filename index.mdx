@@ -12,29 +12,24 @@ export const theme = vsDark;
 # Hello FP in JS 👋
 
 <div>
-비즈웹개발셀
+FE개발팀
 </div>
 <div>
-theo.gt
+Nakta
 </div>
 
 <Notes>
 
-안녕하세요. 반갑습니다. 비즈웹개발셀의 성슬깁니다.
+전에 말씀드린대로 함수형 프로그래밍에 대한 내용을 좀 소개해드리도록 할게요.
 
-오늘 제가 말씀드릴 주제는 함수형 프로그래밍에 대한 내용인데요. 함수형 프로그래밍을 자바스크립트라는 언어의 입장에서 접근하는 방식으로 설명 드리려고 합니다.
+다들 한번쯤은 함수형 프로그래밍에 대해서 들어보셨을 텐데요 함수형 프로그래밍 검색해서 이런 저런 글 읽다보면 보이는 개념들이 몇가지가 있습니다.
 
-함수형 프로그래밍을 들으면 어떤 단어가 생각나시나요?
+뭐 순수 함수, 사이드 이펙트가 없다, 그리고 펑터 모나드 같은 생소한 단어도 있었을 텐데요
 
-당연히 함수형 프로그래밍이니까 '함수'가 있을거구요. 그리고 '펑터', '모나드' 같은 단어들을 생각하시는 분들도 계시구요.
-
-이런 단어들과 연관해서 '어렵다', '새로운 패러다임이다' 라고 생각하시는 분들도 계실겁니다.
-
-그리고 완벽하게 반대라고 하기는 그렇지만 함수형 프로그래밍과 같이 자주 비교되는 '절차지향형 프로그래밍'같은 단어들도 있습니다.
-
-그래서 오늘 이런 여러가지 개념들을 최대한 이해하기 쉽게 풀어서 같이 한번 살펴보도록 하겠습니다.
+이런 개념들을 하나씩 단계별로 따라가면서 어떤 것들인지 그리고 왜 필요한지 한번 같이 살펴보는 시간을 갖도록 하겠습니다.
 
 </Notes>
+
 
 ---
 
@@ -51,26 +46,79 @@ theo.gt
 
 오늘 살펴볼 내용은 이런 내용들이 있습니다.
 
-함수형 프로그래밍이 어떻게 생겼는지 살펴볼거구요.
+먼저 함수형 프로그래밍의 코드가 어떻게 생겼는지 볼거구요.
 
-그리고 함수 합성, 포인트프리 스타일과 커링.
+두 번째로 함수 합성에 대한 내용을 보고
 
-펑터와 에러처리
+함수 합성시에 필요한 포인트프리 스타일과 커링에 대해서 보겠습니다.
+
+마지막으로 펑터의 개념과 펑터를 이용한 에러 핸들링에 대해서 살펴보겠습니다.
 
 </Notes>
-
 
 ---
 
 # Code Style
 
-코드 스타일
+<Notes>
+
+먼저 함수형 프로그래밍으로 작성한 코드가 어떤 식으로 생겼는지 살펴보도록 하겠습니다.
+
+</Notes>
+
+---
+
+<CodeSurferColumns>
+
+<Step title="Code Style">
+
+```jsx 5:23 file=./src/CodeStyle/imper-com.js
+```
+
+```jsx 5:22 file=./src/CodeStyle/fp-com.js
+```
+
+</Step>
+
+<Step title="Code Style">
+
+```jsx 5:23 file=./src/CodeStyle/imper-com.js subtitle="주니어"
+```
+
+```jsx 5:22 file=./src/CodeStyle/fp-com.js subtitle="현재"
+```
+
+</Step>
+
+<Step title="Code Style">
+
+```jsx 5:23 file=./src/CodeStyle/imper-com.js subtitle="Imerative"
+```
+
+```jsx 5:22 file=./src/CodeStyle/fp-com.js subtitle="Functional"
+```
+
+</Step>
+
+</CodeSurferColumns>
 
 <Notes>
 
-우선 코드 스타일인데요.
+자 여기 어떤 동작을 하는 코드가 있습니다. 왼쪽 오른쪽 모두 같은 동작을 하는 코드입니다.
 
-여기서는 함수형 프로그래밍이 어떻게 생겼는지 절차지향형 스타일의 코드와 함께 비교하면 살펴보도록 하겠습니다.
+그리고 이 두가지 코드는 같은 사람이 짠 코드입니다. [enter]
+
+왼쪽은 주니어 시절 제가 짠 코드이고, 오른쪽은 현재의 제가 짠 코드입니다.
+
+코드를 봤을때 어떤 느낌이 드시나요?
+
+보는 사람에 따라서 다르겠지만 왼쪽은 상대적으로 코드를 읽기가 어렵고, 오른쪽은 조금더 읽기 쉬운것 같습니다.
+
+또 뭐 가독성 외에도 여러가지 차이점이 있을텐데요. [enter]
+
+사실 이 두 코드는 각 각 절차지향 스타일과 함수형 스타일로 작성한 코드입니다.
+
+이 두가지 스타일의 코드가 어떻게 다른지 조금더 자세하게 살펴보도록 할게요.
 
 </Notes>
 
@@ -78,16 +126,16 @@ theo.gt
 
 <CodeSurfer>
 
-```json file=./src/CodeStyle/name-01.json title="Code Style" subtitle="FP 스터디 신청자 이름 목록"
+```json file=./src/CodeStyle/name-01.json title="요구 사항" subtitle="FP 스터디 신청자 이름 목록"
 ```
 
 </CodeSurfer>
 
 <Notes>
 
-자 여기 한가지 예제를 가지고 살펴볼게요.
+방금전 코드의 요구사항인데요.
 
-여기 이름 목록이 있습니다. 그런데 입력한 형태가 통일성이 없습니다.
+여기 어떤 이름 목록이 있습니다. 그런데 입력한 형태가 통일성이 없습니다.
 
 </Notes>
 
@@ -98,6 +146,19 @@ theo.gt
 <Step>
 
 ```markdown title="요구사항"
+1. 성과 이름은 공백으로 구분
+2. 성과 이름은 대문자로 시작
+3. 오름차순 정렬
+```
+
+```json file=./src/CodeStyle/name-01.json title="변경 전"
+```
+
+</Step>
+
+<Step>
+
+```js 1 title="요구사항"
 1. 성과 이름은 공백으로 구분
 2. 성과 이름은 대문자로 시작
 3. 오름차순 정렬
@@ -129,6 +190,32 @@ theo.gt
 3. 오름차순 정렬
 ```
 
+```json file=./src/CodeStyle/name-02.json title="변경 후"
+```
+
+</Step>
+
+<Step>
+
+```js 2 title="요구사항"
+1. 성과 이름은 공백으로 구분
+2. 성과 이름은 대문자로 시작
+3. 오름차순 정렬
+```
+
+```json file=./src/CodeStyle/name-03.json title="변경 후"
+```
+
+</Step>
+
+<Step>
+
+```js 3 title="요구사항"
+1. 성과 이름은 공백으로 구분
+2. 성과 이름은 대문자로 시작
+3. 오름차순 정렬
+```
+
 ```json file=./src/CodeStyle/name-03.json title="변경 후"
 ```
 
@@ -151,13 +238,11 @@ theo.gt
 
 <Notes>
 
-그래서 이름 목록을 요구사항에 맞게 변경할 에정인데요.
+그래서 이 이름 목록을 요구사항에 맞게 변경하려고 합니다. [enter]
 
-첫 번째로 성과 이름은 공백으로 구분하려고 합니다.
+첫 번째로 성과 이름은 공백으로 구분해줍니다. 그러면 오른쪽 이름 목록에서 대시와 언더바로 구분된 이름이 공백으로 바뀌어야 겠죠. [enter]
 
-언더바와 대시 문자를 공백으로 맞춰주는 작업을 할 거구요. [enter]
-
-그리고 두 번째로 성과 이름은 대문자로 시작하도록 작업을 할 겁니다.
+그리고 두 번째로 성과 이름은 대문자로 시작하도록 작업을 할 겁니다. 
 
 (4번째 가리키며) 이런 형태로 바꿔줄 예정입니다. [enter]
 
@@ -171,7 +256,7 @@ theo.gt
 
 <CodeSurferColumns sizes={[1, 2]} themes={[imperativeTheme, imperativeTheme]}>
 
-<Step subtitle="Imperative: 이름 목록 순회">
+<Step title="Imperative" subtitle="이름 목록 순회">
 
 ```json file=./src/CodeStyle/name-01.json
 ```
@@ -181,7 +266,7 @@ theo.gt
 
 </Step>
 
-<Step subtitle="공백으로 구분: 언더바(_), 대시(-) 문자를 빈 문자열로 대체">
+<Step title="Imperative" subtitle="공백으로 구분: 언더바(_), 대시(-) 문자를 빈 문자열로 대체">
 
 ```json file=./src/CodeStyle/name-02.json
 ```
@@ -192,7 +277,7 @@ theo.gt
 
 </Step>
 
-<Step subtitle="대문자로 시작: 공백을 기준으로 이름을 쪼개준다.">
+<Step title="Imperative" subtitle="대문자로 시작: 공백을 기준으로 이름을 쪼개준다.">
 
 ```json file=./src/CodeStyle/name-02.json
 ```
@@ -203,7 +288,7 @@ theo.gt
 
 </Step>
 
-<Step subtitle="대문자로 시작: 쪼개준 이름의 첫 글자를 대문자로 바꿔준다.">
+<Step title="Imperative" subtitle="대문자로 시작: 쪼개준 이름의 첫 글자를 대문자로 바꿔준다.">
 
 ```json file=./src/CodeStyle/name-02.json
 ```
@@ -215,7 +300,7 @@ theo.gt
 
 </Step>
 
-<Step subtitle="대문자로 시작: splitName을 공백을 넣어서 join 한다.">
+<Step title="Imperative" subtitle="대문자로 시작: splitName을 공백을 넣어서 join 한다.">
 
 ```json file=./src/CodeStyle/name-03.json
 ```
@@ -226,7 +311,7 @@ theo.gt
 
 </Step>
 
-<Step subtitle="오름차순 정렬: sort 메소드 이용">
+<Step title="Imperative" subtitle="오름차순 정렬: sort 메소드 이용">
 
 ```json file=./src/CodeStyle/name-com.json
 ```
@@ -237,7 +322,7 @@ theo.gt
 
 </Step>
 
-<Step>
+<Step title="Imperative">
 
 ```json 1:21 file=./src/CodeStyle/name-com.json
 ```
@@ -254,11 +339,14 @@ theo.gt
 
 이 요구사항을 가지고 절차지향 코드부터 살펴보겠습니다.
 
-이름이 리스트이기 때문에 for loop를 가지고 순회하면서 각 이름에 접근할 수 있습니다. [enter]
+이름이 어레이기 때문에 for loop를 가지고 순회하면서 각 이름에 접근할 수 있습니다. [enter]
 
-그리고 첫번째 요구사항인 '성과 이름은 공백으로 구분한다.'를 구현하기 위해 replace를 사용해서 언더바와 대시를 공백으로 바꿔준 후 원래 자리에 다시 저장해줍니다. [enter]
+그리고 성과 이름을 공백으로 구분하기 위해서 replace함수를 사용합니다.
 
-그리고 두 번째 요구사항인 성과 이름은 대문자로 시작한다를 구현하기 위해서 우선 성과 이름을 공백을 기준으로 나눠줍니다. 
+언더바와 대시를 공백으로 바꿔준 후 원래 자리에 다시 저장해줍니다. [enter]
+
+그리고 두 번째로 성과 이름이 대문자로 시작하도록 만들기 위해서 성과 이름을 공백을 기준으로 나눠줍니다. 
+
 그다움 splitName이라는 변수에 이름과 성이 쪼개진 배열이 저장합니다.[enter]
 
 그리고 이렇게 쪼갠 splitName을 다시한번 for loop로 순회하면서 이름과 성에 대해서 첫번째 글자만 대문자로 바꿔줍니다. 그리고 splitName의 원래 자리에 다시 저장합니다. [Enter]
@@ -273,9 +361,9 @@ theo.gt
 ---
 
 
-<CodeSurferColumns sizes={[1, 2]}themes={[fpTheme, fpTheme]}>
+<CodeSurferColumns sizes={[1, 2]} themes={[fpTheme, fpTheme]}>
 
-<Step subtitle="Functional: map 메소드를 이용하면 순회하며 변경 가능">
+<Step title="Functional" subtitle="Functional: map 메소드를 이용하면 순회하며 변경 가능">
 
 ```json file=./src/CodeStyle/name-01.json
 ```
@@ -285,7 +373,7 @@ theo.gt
 
 </Step>
 
-<Step subtitle="공백으로 구분: replaceSpace라는 함수를 정의해서 map 함수로 넘겨준다.">
+<Step title="Functional" subtitle="공백으로 구분: replaceSpace라는 함수를 정의해서 map 함수로 넘겨준다.">
 
 ```json file=./src/CodeStyle/name-02.json
 ```
@@ -296,7 +384,7 @@ theo.gt
 
 </Step>
 
-<Step subtitle="대문자로 시작: 우선 string의 첫 글자를 대문자로 바꿔주는 함수 정의">
+<Step title="Functional" subtitle="대문자로 시작: 우선 string의 첫 글자를 대문자로 바꿔주는 함수 정의">
 
 ```json file=./src/CodeStyle/name-02.json
 ```
@@ -306,7 +394,7 @@ theo.gt
 
 </Step>
 
-<Step subtitle="대문자로 시작: 이름을 받아서 공백 기준으로 첫 글자만 대문자로 바꿔주는 함수를 정의">
+<Step title="Functional" subtitle="대문자로 시작: 이름을 받아서 공백 기준으로 첫 글자만 대문자로 바꿔주는 함수를 정의">
 
 ```json file=./src/CodeStyle/name-02.json
 ```
@@ -316,7 +404,7 @@ theo.gt
 
 </Step>
 
-<Step subtitle="대문자로 시작: map + changePartStartCase">
+<Step title="Functional" subtitle="대문자로 시작: map + changePartStartCase">
 
 ```json file=./src/CodeStyle/name-03.json
 ```
@@ -326,7 +414,7 @@ theo.gt
 
 </Step>
 
-<Step subtitle="오름차순 정렬">
+<Step title="Functional" subtitle="오름차순 정렬">
 
 ```json file=./src/CodeStyle/name-com.json
 ```
@@ -337,7 +425,7 @@ theo.gt
 
 </Step>
 
-<Step>
+<Step title="Functional">
 
 ```json file=./src/CodeStyle/name-com.json
 ```
@@ -429,7 +517,7 @@ theo.gt
 
 </Step>
 
-<Step subtitle="두가지 스타일의 코드에서 차이가 느껴지시나요?">
+<Step>
 
 ```jsx 5:23 file=./src/CodeStyle/imper-com.js title="Imperative"
 ```
@@ -444,7 +532,7 @@ theo.gt
 ```jsx 6[9:12],7[9:17],9[9:17],12[9:16],13[5:12],17[5:16],20[3:10] file=./src/CodeStyle/imper-com.js title="Imperative" subtitle="값을 저장할 변수 선언과 재할당"
 ```
 
-```jsx 17:20 file=./src/CodeStyle/fp-com.js title="Functional" subtitle="값을 저장하는 변수 사용 안함"
+```jsx 5,9,13 file=./src/CodeStyle/fp-com.js title="Functional" subtitle="함수 기반"
 ```
 
 </Step>
@@ -455,16 +543,6 @@ theo.gt
 ```
 
 ```jsx 17:20 file=./src/CodeStyle/fp-com.js title="Functional" subtitle="코드 표현: 무엇(What)"
-```
-
-</Step>
-
-<Step>
-
-```jsx 5:23 file=./src/CodeStyle/imper-com.js title="Imperative" subtitle="함수 없음"
-```
-
-```jsx 5,9,13 file=./src/CodeStyle/fp-com.js title="Functional" subtitle="함수 기반"
 ```
 
 </Step>
@@ -500,7 +578,11 @@ theo.gt
 두가지의 차이점이 느껴지시나요?
 
 (각 차이점 설명 후)
-개인적으로는 함수형 스타일이 절차지향 스타일보다 가독성이 좋다고 느껴지는것 같습니다.
+
+제가 함수형 약을 팔기위해서 말씀드리고는 있지만
+함수형 스타일이 조금더 간결해보이고, 그러다보니 읽기도 편한것 같습니다.
+
+그리고 함수 단위로 쪼개져있어서 테스트 코드 작성도 더 쉬울것 같습니다.
 
 </Notes>
 
@@ -510,15 +592,26 @@ theo.gt
 
 <Notes>
 
-다음은 함수형 프로그래밍의 특징에 대해서 살펴보겠습니다.
+그렇다면 이 함수형 프로그래밍이 어떤 특징을 갖는지 살펴보도록 하겠습니다.
 
+</Notes>
+
+---
+
+# 함수형 프로그래밍의 특징
+
+## 1. 일급함수(First Class Function)
+
+
+<Notes>
+일급함수라는 말은 한마디로 함수를 변수처럼 사용할 수 있다. 는 뜻입니다.
 </Notes>
 
 ---
 
 <CodeSurfer>
 
-```js title="First Class Function" subtitle="함수 선언"
+```js title="일급함수(First Class Function)" subtitle="1. 변수에 할당"
 function startCase(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
@@ -526,7 +619,7 @@ function startCase(str) {
 startCase('hello'); // Hello
 ```
 
-```js title="First Class Function" subtitle="함수를 변수에 할당하는 형태로 선언할 수 있다."
+```js title="일급함수(First Class Function)" subtitle="1. 변수에 할당"
 const startCase = (str) => {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
@@ -538,13 +631,13 @@ const startCase = function(str) {
 startCase('hello'); // Hello
 ```
 
-```js 1[64:90],2,3[1] title="First Class Function" subtitle="함수를 파라미터로 전달"
+```js 1[64:90],2,3[1] title="일급함수(First Class Function)" subtitle="2. 함수를 파라미터로 전달"
 document.querySelector('.my-button').addEventListener('click', (event) => {
   console.log('버튼 클릭!');
 })
 ```
 
-```js 2:4 title="First Class Function" subtitle="함수를 리턴하는 함수"
+```js 2:4 title="일급함수(First Class Function)" subtitle="3. 함수를 리턴하는 함수"
 const returnFunction = () => {
   return () => {
     // ...
@@ -555,10 +648,6 @@ const returnFunction = () => {
 </CodeSurfer>
 
 <Notes>
-
-함수형 프로그래밍의 특징 중 하나는 일급 함수를 사용한다는 점인데요.
-
-일급 함수라는 뜻은 함수를 변수와 같이 사용할 수 있다는 뜻입니다.
 
 자바스크립트에서 함수를 선언할 때 이렇게 선언할 수 있습니다. [enter]
 
@@ -572,15 +661,26 @@ const returnFunction = () => {
 
 ---
 
+# 함수형 프로그래밍의 특징
+
+## 2. 순수함수(Pure Function)
+
+
+<Notes>
+함수형 프로그래밍의 두 번째 특징으로 순수 함수가 있습니다.
+</Notes>
+
+---
+
 <CodeSurfer>
 
-```js title="Pure Function" subtitle="파라미터에만 의존하는 순수 함수"
+```js title="순수함수(Pure Function)" subtitle="파라미터에만 의존하는 순수 함수"
 const negate = (num) => {
   return num * -1;
 }
 ```
 
-```js title="Pure Function" subtitle="외부 변수에 의존하는 불순 함수"
+```js title="순수함수(Pure Function)" subtitle="외부 변수에 의존하는 불순 함수(Impure Function)"
 let num = 10;
 
 const negate = () => {
@@ -588,7 +688,7 @@ const negate = () => {
 }
 ```
 
-```js title="Pure Function" subtitle="maxNum이 다른곳에서 바뀐다면?"
+```js title="순수함수(Pure Function)" subtitle="maxNum이 다른곳에서 바뀐다면?"
 let maxNum = 5;
 
 const isGraterThanFive = (num) => {
@@ -599,7 +699,7 @@ isGraterThanFive(10);
 // true
 ```
 
-```js title="Pure Function" subtitle="결과 값이 달라진다."
+```js title="순수함수(Pure Function)" subtitle="불순 함수: 사이드 이펙트가 발생할 가능성이 있다."
 const isGraterThanFive = (num) => {
   return num > maxNum;
 }
@@ -611,7 +711,7 @@ isGraterThanFive(10);
 ```
 
 
-```js title="Pure Function" subtitle="Immutable"
+```js title="순수함수(Pure Function)" subtitle="Immutable"
 const replaceSpace = (str) => {
   return str.replace(/(_|-)/, ' ');
 }
@@ -625,7 +725,7 @@ const changePartStartCase = (str) => {
 }
 ```
 
-```js title="Pure Function" subtitle="기존 값을 변경하지 않고, 새로운 값을 반환. 즉, 사이드 이펙트 없음."
+```js title="순수함수(Pure Function)" subtitle="기존 값을 변경하지 않고, 새로운 값을 반환. 즉, 사이드 이펙트 없음."
 const replaceSpace = (str) => {
   return str.replace(/(_|-)/, ' ');
 }
@@ -669,6 +769,17 @@ console.log(startCaseName); // 'Leah Kelly'
 
 ---
 
+# 함수형 프로그래밍의 특징
+
+- 일급함수(First Class Function)
+- 순수함수(Pure Function)
+
+<Notes>
+다시 한번 정리하면 함수형 프로그래밍은 일급함수와 순수함수 라는 특징을 갖습니다.
+</Notes>
+
+---
+
 # Function Composition
 
 함수 합성
@@ -677,9 +788,9 @@ console.log(startCaseName); // 'Leah Kelly'
 
 다음은 함수합성에 대한 얘기를 해볼까 합니다.
 
-함수형 프로그래밍은 뭔가 대단한 개념이 아니라 단순히 작은 함수들을 조합해서 원하는 목적을 만들어낸다고 생각하시면 되는데요.
+함수형 프로그래밍은 뭔가 대단한 개념이 아니라 작은 함수들을 조합해서 원하는 목적을 만들어낸다고 생각하시면 되는데요.
 
-이런 합수를 조합하는 행동을 함수 합성이라고 부르고 함수합성 방법에 대해서 살펴보도록 하겠습니다.
+이런 합수를 조합하는 행위를 함수 합성이라고 부릅니다.
 
 </Notes>
 
@@ -687,7 +798,7 @@ console.log(startCaseName); // 'Leah Kelly'
 
 <CodeSurfer>
 
-```js file=./src/FunctionComposition/1-1.js subtitle="아무 생각없이 만든 함수"
+```js file=./src/FunctionComposition/1-1.js subtitle="여러 헬퍼 함수들"
 ```
 
 ```js file=./src/FunctionComposition/1-2.js subtitle="2의 네 제곱"
@@ -726,36 +837,7 @@ console.log(startCaseName); // 'Leah Kelly'
 이런 형태는 가장 안쪽부터 바깥쪽으로 코드를 읽어 나가야 합니다.
 익숙한 형태는 아닙니다. [enter]
 
-그런데 이런 형태로 적용해야 하는 함수가 더 많아진다고 하면 어떨까요? 읽기가 더욱 힘들어 집니다.
-
-그리고 이런 형태는 우리 모두가 어렸을적 수학시간에 배웠던 수학적인 함수 합성 표현법과 같습니다. [enter]
-
-</Notes>
-
-
----
-
-<CodeSurferColumns themes={[imperativeTheme, fpTheme]}>
-
-<Step subtitle="함수 합성의 수학적 표현">
-
-```js
-(h ・ g ・ f)(x) = h( g( f( x ) ) )
-```
-
-```js
-inc(negate(pow(2, 4)));
-```
-
-</Step>
-
-</CodeSurferColumns>
-
-<Notes>
-
-여기 왼족에서 오른쪽에 해당하는 부분이 지금 오른쪽 코드와 같은 형태를 띄고 있습니다.
-
-안쪽부터 적용을 해 나가는 모습입니다.
+그런데 이런 형태로 적용해야 하는 함수가 더 많아진다고 하면 어떨까요? 읽기가 더욱 힘들어 집니다.  [enter]
 
 </Notes>
 
@@ -763,7 +845,7 @@ inc(negate(pow(2, 4)));
 
 <CodeSurferColumns themes={[imperativeTheme, fpTheme]}>
 
-<Step subtitle="수학적 표현을 읽기 편하게 바꿔줄 compose 함수">
+<Step subtitle="읽기 편하게 바꿔줄 compose 함수">
 
 ```js file=./src/FunctionComposition/compose.js
 ```
@@ -853,7 +935,7 @@ compose(
 
 <Notes>
 
-이런 수학적 표현 방식을 읽기 편하게 바꿔줄 수 있는 함수를 하나 만들어 사용해보겠습니다.
+자 그래서 이런식으로 함수를 조합했을 때 읽기 어려운 부분을 조금더 읽기 쉽게 도와줄 함수를 하나 만들어 사용해보겠습니다.
 
 이 함수의 이름은 compose 인데요. [enter]
 
@@ -870,7 +952,9 @@ compose 함수는 파라미터로 실행할 함수 목록을 받습니다. [ente
 
 그리고 마지막 함수에 -16이 들어가면 inc 함수를 통해 +1을 해서 -15가 되고 함수는 종료하게 됩니다. [enter]
 
-그런데 compose 합성을 한 방식이 더 복잡한 느낌이 드는것 같습니다. 그 이유와 개선 방법을 다음장에서 같이 살펴보도록 하겠습니다.
+그런데 compose 합성을 한 이유가 조금 더 읽기 쉽게 만들기 위함이었는데 뭔가 조금 더 읽기 어려워 진것 같슴니다.
+
+이 부분을 조금 더 개선하기 위해서 포인트프리 스타일을 살펴보도록 하겠습니다.
 
 </Notes>
 
@@ -882,7 +966,7 @@ compose 함수는 파라미터로 실행할 함수 목록을 받습니다. [ente
 
 <Notes>
 
-이번 장은 포인트프리 스타일입니다. 방금전 살펴봤던 복잡해 보이는 문제를 해결할 방법을 같이 살펴보겠습니다.
+포인트프리 스타일은 방금전 살펴봤던 약간은 복잡해 보이는 코드를 조금 더 읽기 쉽게 바꿔줄 수 있는 방법입니다.
 
 </Notes>
 
@@ -1066,7 +1150,13 @@ pipe(pow, negate, inc);
 
 다음으로 커링에 대해서 살펴볼 건데요.
 
-우선 예제를 가지고 먼저 살펴보겠습니다. 
+저는 이 커링이라는 개념을 처음 알았을때 왜 굳이 이렇게 파라미터를 쪼개서 받는걸까 하고 이해를 못했습니다.
+
+뭐 임시로 일부만 바인딩해서 나중에 쓴다고 쳐도 크게 메리트가 없어보였습니다.
+
+그런데 이 커링이 크게 도움이 되는 부분을 함수형 프로그래밍을 하면서 발견했는데요 한번 살펴보도록 하겠습니다.
+
+우선 예제를 가지고 먼저 살펴보겠습니다.
 
 </Notes>
 
@@ -1083,7 +1173,7 @@ pipe(pow, negate, inc);
 
 ```jsx title="변경 전"
 const person = {
-  name: 'theo.gt',
+  name: 'Nakta',
   age: 15,
   work: 'developer'
 };
@@ -1100,7 +1190,7 @@ const person = {
 
 ```jsx title="변경 후"
 const person = {
-  name: 'theo.gt',
+  name: 'Nakta',
   work: 'developer'
 };
 ```
@@ -1116,7 +1206,7 @@ const person = {
 
 ```jsx title="변경 후"
 const person = {
-  name: 'theo.gt',
+  name: 'Nakta',
   job: 'developer'
 };
 ```
@@ -1184,7 +1274,7 @@ const person = {
 
 이 커링을 한마디로 표현하자면 여기 나와있는 '파라미터를 모두 채우지 않는 한 함수로 남아이겠다.' 로 표현할 수 있습니다.
 
-이게 무슨뜻인지 한번 살펴보도록 하겠습니다.
+자 그럼 이 커링이 어떻게 포인트프리 스타일에 도움이 되는지 다시 한번 살펴보겠습니다.
 
 </Notes>
 
@@ -1456,7 +1546,7 @@ pipe 라는 함수에 처리할 로직 함수들을 전달하고 마지막으로
 
 ```jsx title="변경 대상"
 const person = {
-  name: 'theo.gt',
+  name: 'Nakta',
   age: 15,
   work: 'developer'
 };
@@ -1687,7 +1777,7 @@ box3같은 경우는 먼저 Box.of('FP3')로 박스를 만들고 다시 한번 B
 
 pipe함수를 가지고 박스 안에 books를 넣어 줍니다.[enter]
 
-다음으로 우리가 만들었던 책을 찾는 함수인 getBookById를 사용하는데요. 책 목록이 박스 안에 들어있기 때문에 box.$value를 사용해서 책을 찾아 줍니다. [enter]
+다음으로 우리가 만들었던 책을 찾는 함수인 findBookById를 사용하는데요. 책 목록이 박스 안에 들어있기 때문에 box.$value를 사용해서 책을 찾아 줍니다. [enter]
 
 그리고 prop 함수에 title을 넘겨서 찾은 책의 제목을 반환하도록 합니다. [enter]
 
@@ -1783,7 +1873,7 @@ map 메소드는 파라미터로 함수를 하나 받습니다. [enter] 그리�
 
 여기에 map을 이용해서 startCase를 해주면 첫 글자만 대문자로 변경된 스트링을 박스에 넣어서 반환해 줍니다.
 
-자, 이렇게 만들어보니 박스에 값을 넣고 map 메소드를 이용하면 박스를 유지한 채로 값을 변경할 수 있게 됐습니다.
+이런 식으로 map 메소드를 이용하면 박스를 유지한 채로 값을 변경할 수 있게 됐습니다.
 
 게다가 반환 값이 박스 인스턴스이므로 반환 값에 다시 map을 이용해서 값을 변경할 수 있습니다. 메소드 체이닝 방식이죠.
 
@@ -1801,7 +1891,7 @@ map 메소드는 파라미터로 함수를 하나 받습니다. [enter] 그리�
 
 <Notes>
 
-자 이렇게 해서 방금, 이번 주제인 펑터를 만나게 됐습니다.
+자 이렇게 해서 펑터가 무슨 객체인지 알게 됐습니다.
 
 펑터는 같은 타입을 반환하는 map 메소드를 구현한 객체다 라고 말할 수 있습니다.
 
@@ -1938,7 +2028,7 @@ findByBooId에서 book3 라는 아이디로 책을 찾을때 결과로 undefined
 
 <CodeSurferColumns themes={[ imperativeTheme, fpTheme]}>
 
-<Step subtitle="Maybe의 상태는 두 가지 값을 갖는다">
+<Step title="Maybe 펑터" subtitle="두 가지 상태">
 
 ```markdown
 Nothing
@@ -1966,7 +2056,7 @@ Nothing과 Just입니다.
 
 <CodeSurferColumns>
 
-<Step>
+<Step title="Maybe 펑터">
 
 ```js subtitle="값이 null or undefined"
 Maybe.of(null) // Nothing
@@ -2017,7 +2107,7 @@ Maybe.of에 null을 넣어줬기 대문에 Nothing 상태를 갖게 되구요. �
 
 그리고 조금 특별한 기능이 바로 이부분인데요. 상태에 따라 map의 구현이 살짝 달라집니다. 
 
-Maybe의 Nothing 상태일 경우는 파라미터 받은 fn무시하고 Nothing 상태인 자기 자신을 그대로 반환해 줍니다.
+Maybe가 Nothing 상태일 경우는 파라미터 받은 함수는 무시하고 Nothing 상태인 자기 자신을 그대로 반환해 줍니다.
 그리고 Just 상태인 경우는 기존 박스와 마찬가지로 함수를 실행해서 다시 Maybe에 감싸서 반환해 줍니다. [enter]
 
 자 그럼 이전에 구현했던 부분중에 Box를 Maybe로 바꿔보겠습니다.[enter]
@@ -2207,7 +2297,7 @@ Nothing 상태일때는 원래 로직을 타지 않고 모두 무시하기 때�
 
 # Q & A
 
-More 👉 https://velog.io/@nakta/series/FP-in-JS
+More 👉 https://nakta.dev/fp-in-js-1-code-style
 
 <Notes>
 
