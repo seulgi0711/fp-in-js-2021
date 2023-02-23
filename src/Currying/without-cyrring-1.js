@@ -8,7 +8,7 @@ const rename = (keysMap, obj) => {
 };
 
 const person = {
-  name: 'theo.gt',
+  name: 'Nakta',
   age: 15,
   work: 'developer'
 };

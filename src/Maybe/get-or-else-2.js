@@ -16,5 +16,5 @@ const getUpperBookTitleById = (id, books) => {
   )(books);
 };
 
-// Just('Coading with javascript')
+// Just('Coding with javascript')
 getUpperBookTitleById('book1', books);

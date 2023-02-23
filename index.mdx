@@ -12,10 +12,10 @@ export const theme = vsDark;
 # Hello FP in JS 👋
 
 <div>
-비즈웹개발셀
+FE개발팀
 </div>
 <div>
-theo.gt
+Nakta
 </div>
 
 
@@ -32,25 +32,56 @@ theo.gt
 </ul>
 
 
-
-
 ---
 
 # Code Style
 
-코드 스타일
 
+---
+
+<CodeSurferColumns>
+
+<Step title="Code Style">
+
+```jsx 5:23 file=./src/CodeStyle/imper-com.js
+```
+
+```jsx 5:22 file=./src/CodeStyle/fp-com.js
+```
+
+</Step>
+
+<Step title="Code Style">
+
+```jsx 5:23 file=./src/CodeStyle/imper-com.js subtitle="주니어"
+```
+
+```jsx 5:22 file=./src/CodeStyle/fp-com.js subtitle="현재"
+```
+
+</Step>
+
+<Step title="Code Style">
+
+```jsx 5:23 file=./src/CodeStyle/imper-com.js subtitle="Imerative"
+```
+
+```jsx 5:22 file=./src/CodeStyle/fp-com.js subtitle="Functional"
+```
+
+</Step>
+
+</CodeSurferColumns>
 
 
 ---
 
 <CodeSurfer>
 
-```json file=./src/CodeStyle/name-01.json title="Code Style" subtitle="FP 스터디 신청자 이름 목록"
+```json file=./src/CodeStyle/name-01.json title="요구 사항" subtitle="FP 스터디 신청자 이름 목록"
 ```
 
 </CodeSurfer>
-
 
 
 ---
@@ -60,6 +91,19 @@ theo.gt
 <Step>
 
 ```markdown title="요구사항"
+1. 성과 이름은 공백으로 구분
+2. 성과 이름은 대문자로 시작
+3. 오름차순 정렬
+```
+
+```json file=./src/CodeStyle/name-01.json title="변경 전"
+```
+
+</Step>
+
+<Step>
+
+```js 1 title="요구사항"
 1. 성과 이름은 공백으로 구분
 2. 성과 이름은 대문자로 시작
 3. 오름차순 정렬
@@ -91,6 +135,32 @@ theo.gt
 3. 오름차순 정렬
 ```
 
+```json file=./src/CodeStyle/name-02.json title="변경 후"
+```
+
+</Step>
+
+<Step>
+
+```js 2 title="요구사항"
+1. 성과 이름은 공백으로 구분
+2. 성과 이름은 대문자로 시작
+3. 오름차순 정렬
+```
+
+```json file=./src/CodeStyle/name-03.json title="변경 후"
+```
+
+</Step>
+
+<Step>
+
+```js 3 title="요구사항"
+1. 성과 이름은 공백으로 구분
+2. 성과 이름은 대문자로 시작
+3. 오름차순 정렬
+```
+
 ```json file=./src/CodeStyle/name-03.json title="변경 후"
 ```
 
@@ -113,13 +183,12 @@ theo.gt
 
 
 
-
 ---
 
 
 <CodeSurferColumns sizes={[1, 2]} themes={[imperativeTheme, imperativeTheme]}>
 
-<Step subtitle="Imperative: 이름 목록 순회">
+<Step title="Imperative" subtitle="이름 목록 순회">
 
 ```json file=./src/CodeStyle/name-01.json
 ```
@@ -129,7 +198,7 @@ theo.gt
 
 </Step>
 
-<Step subtitle="공백으로 구분: 언더바(_), 대시(-) 문자를 빈 문자열로 대체">
+<Step title="Imperative" subtitle="공백으로 구분: 언더바(_), 대시(-) 문자를 빈 문자열로 대체">
 
 ```json file=./src/CodeStyle/name-02.json
 ```
@@ -140,7 +209,7 @@ theo.gt
 
 </Step>
 
-<Step subtitle="대문자로 시작: 공백을 기준으로 이름을 쪼개준다.">
+<Step title="Imperative" subtitle="대문자로 시작: 공백을 기준으로 이름을 쪼개준다.">
 
 ```json file=./src/CodeStyle/name-02.json
 ```
@@ -151,7 +220,7 @@ theo.gt
 
 </Step>
 
-<Step subtitle="대문자로 시작: 쪼개준 이름의 첫 글자를 대문자로 바꿔준다.">
+<Step title="Imperative" subtitle="대문자로 시작: 쪼개준 이름의 첫 글자를 대문자로 바꿔준다.">
 
 ```json file=./src/CodeStyle/name-02.json
 ```
@@ -163,7 +232,7 @@ theo.gt
 
 </Step>
 
-<Step subtitle="대문자로 시작: splitName을 공백을 넣어서 join 한다.">
+<Step title="Imperative" subtitle="대문자로 시작: splitName을 공백을 넣어서 join 한다.">
 
 ```json file=./src/CodeStyle/name-03.json
 ```
@@ -174,7 +243,7 @@ theo.gt
 
 </Step>
 
-<Step subtitle="오름차순 정렬: sort 메소드 이용">
+<Step title="Imperative" subtitle="오름차순 정렬: sort 메소드 이용">
 
 ```json file=./src/CodeStyle/name-com.json
 ```
@@ -185,7 +254,7 @@ theo.gt
 
 </Step>
 
-<Step>
+<Step title="Imperative">
 
 ```json 1:21 file=./src/CodeStyle/name-com.json
 ```
@@ -200,13 +269,12 @@ theo.gt
 
 
 
-
 ---
 
 
-<CodeSurferColumns sizes={[1, 2]}themes={[fpTheme, fpTheme]}>
+<CodeSurferColumns sizes={[1, 2]} themes={[fpTheme, fpTheme]}>
 
-<Step subtitle="Functional: map 메소드를 이용하면 순회하며 변경 가능">
+<Step title="Functional" subtitle="Functional: map 메소드를 이용하면 순회하며 변경 가능">
 
 ```json file=./src/CodeStyle/name-01.json
 ```
@@ -216,7 +284,7 @@ theo.gt
 
 </Step>
 
-<Step subtitle="공백으로 구분: replaceSpace라는 함수를 정의해서 map 함수로 넘겨준다.">
+<Step title="Functional" subtitle="공백으로 구분: replaceSpace라는 함수를 정의해서 map 함수로 넘겨준다.">
 
 ```json file=./src/CodeStyle/name-02.json
 ```
@@ -227,7 +295,7 @@ theo.gt
 
 </Step>
 
-<Step subtitle="대문자로 시작: 우선 string의 첫 글자를 대문자로 바꿔주는 함수 정의">
+<Step title="Functional" subtitle="대문자로 시작: 우선 string의 첫 글자를 대문자로 바꿔주는 함수 정의">
 
 ```json file=./src/CodeStyle/name-02.json
 ```
@@ -237,7 +305,7 @@ theo.gt
 
 </Step>
 
-<Step subtitle="대문자로 시작: 이름을 받아서 공백 기준으로 첫 글자만 대문자로 바꿔주는 함수를 정의">
+<Step title="Functional" subtitle="대문자로 시작: 이름을 받아서 공백 기준으로 첫 글자만 대문자로 바꿔주는 함수를 정의">
 
 ```json file=./src/CodeStyle/name-02.json
 ```
@@ -247,7 +315,7 @@ theo.gt
 
 </Step>
 
-<Step subtitle="대문자로 시작: map + changePartStartCase">
+<Step title="Functional" subtitle="대문자로 시작: map + changePartStartCase">
 
 ```json file=./src/CodeStyle/name-03.json
 ```
@@ -257,7 +325,7 @@ theo.gt
 
 </Step>
 
-<Step subtitle="오름차순 정렬">
+<Step title="Functional" subtitle="오름차순 정렬">
 
 ```json file=./src/CodeStyle/name-com.json
 ```
@@ -268,7 +336,7 @@ theo.gt
 
 </Step>
 
-<Step>
+<Step title="Functional">
 
 ```json file=./src/CodeStyle/name-com.json
 ```
@@ -279,7 +347,6 @@ theo.gt
 </Step>
 
 </CodeSurferColumns>
-
 
 
 ---
@@ -346,7 +413,7 @@ theo.gt
 
 </Step>
 
-<Step subtitle="두가지 스타일의 코드에서 차이가 느껴지시나요?">
+<Step>
 
 ```jsx 5:23 file=./src/CodeStyle/imper-com.js title="Imperative"
 ```
@@ -361,7 +428,7 @@ theo.gt
 ```jsx 6[9:12],7[9:17],9[9:17],12[9:16],13[5:12],17[5:16],20[3:10] file=./src/CodeStyle/imper-com.js title="Imperative" subtitle="값을 저장할 변수 선언과 재할당"
 ```
 
-```jsx 17:20 file=./src/CodeStyle/fp-com.js title="Functional" subtitle="값을 저장하는 변수 사용 안함"
+```jsx 5,9,13 file=./src/CodeStyle/fp-com.js title="Functional" subtitle="함수 기반"
 ```
 
 </Step>
@@ -372,16 +439,6 @@ theo.gt
 ```
 
 ```jsx 17:20 file=./src/CodeStyle/fp-com.js title="Functional" subtitle="코드 표현: 무엇(What)"
-```
-
-</Step>
-
-<Step>
-
-```jsx 5:23 file=./src/CodeStyle/imper-com.js title="Imperative" subtitle="함수 없음"
-```
-
-```jsx 5,9,13 file=./src/CodeStyle/fp-com.js title="Functional" subtitle="함수 기반"
 ```
 
 </Step>
@@ -399,10 +456,16 @@ theo.gt
 </CodeSurferColumns>
 
 
+---
+
+# 함수형 프로그래밍의 특징
+
 
 ---
 
 # 함수형 프로그래밍의 특징
+
+## 1. 일급함수(First Class Function)
 
 
 
@@ -410,7 +473,7 @@ theo.gt
 
 <CodeSurfer>
 
-```js title="First Class Function" subtitle="함수 선언"
+```js title="일급함수(First Class Function)" subtitle="1. 변수에 할당"
 function startCase(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
@@ -418,7 +481,7 @@ function startCase(str) {
 startCase('hello'); // Hello
 ```
 
-```js title="First Class Function" subtitle="함수를 변수에 할당하는 형태로 선언할 수 있다."
+```js title="일급함수(First Class Function)" subtitle="1. 변수에 할당"
 const startCase = (str) => {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
@@ -430,13 +493,13 @@ const startCase = function(str) {
 startCase('hello'); // Hello
 ```
 
-```js 1[64:90],2,3[1] title="First Class Function" subtitle="함수를 파라미터로 전달"
+```js 1[64:90],2,3[1] title="일급함수(First Class Function)" subtitle="2. 함수를 파라미터로 전달"
 document.querySelector('.my-button').addEventListener('click', (event) => {
   console.log('버튼 클릭!');
 })
 ```
 
-```js 2:4 title="First Class Function" subtitle="함수를 리턴하는 함수"
+```js 2:4 title="일급함수(First Class Function)" subtitle="3. 함수를 리턴하는 함수"
 const returnFunction = () => {
   return () => {
     // ...
@@ -447,18 +510,25 @@ const returnFunction = () => {
 </CodeSurfer>
 
 
+---
+
+# 함수형 프로그래밍의 특징
+
+## 2. 순수함수(Pure Function)
+
+
 
 ---
 
 <CodeSurfer>
 
-```js title="Pure Function" subtitle="파라미터에만 의존하는 순수 함수"
+```js title="순수함수(Pure Function)" subtitle="파라미터에만 의존하는 순수 함수"
 const negate = (num) => {
   return num * -1;
 }
 ```
 
-```js title="Pure Function" subtitle="외부 변수에 의존하는 불순 함수"
+```js title="순수함수(Pure Function)" subtitle="외부 변수에 의존하는 불순 함수(Impure Function)"
 let num = 10;
 
 const negate = () => {
@@ -466,7 +536,7 @@ const negate = () => {
 }
 ```
 
-```js title="Pure Function" subtitle="maxNum이 다른곳에서 바뀐다면?"
+```js title="순수함수(Pure Function)" subtitle="maxNum이 다른곳에서 바뀐다면?"
 let maxNum = 5;
 
 const isGraterThanFive = (num) => {
@@ -477,7 +547,7 @@ isGraterThanFive(10);
 // true
 ```
 
-```js title="Pure Function" subtitle="결과 값이 달라진다."
+```js title="순수함수(Pure Function)" subtitle="불순 함수: 사이드 이펙트가 발생할 가능성이 있다."
 const isGraterThanFive = (num) => {
   return num > maxNum;
 }
@@ -489,7 +559,7 @@ isGraterThanFive(10);
 ```
 
 
-```js title="Pure Function" subtitle="Immutable"
+```js title="순수함수(Pure Function)" subtitle="Immutable"
 const replaceSpace = (str) => {
   return str.replace(/(_|-)/, ' ');
 }
@@ -503,7 +573,7 @@ const changePartStartCase = (str) => {
 }
 ```
 
-```js title="Pure Function" subtitle="기존 값을 변경하지 않고, 새로운 값을 반환. 즉, 사이드 이펙트 없음."
+```js title="순수함수(Pure Function)" subtitle="기존 값을 변경하지 않고, 새로운 값을 반환. 즉, 사이드 이펙트 없음."
 const replaceSpace = (str) => {
   return str.replace(/(_|-)/, ' ');
 }
@@ -526,6 +596,13 @@ console.log(startCaseName); // 'Leah Kelly'
 </CodeSurfer>
 
 
+---
+
+# 함수형 프로그래밍의 특징
+
+- 일급함수(First Class Function)
+- 순수함수(Pure Function)
+
 
 ---
 
@@ -534,12 +611,11 @@ console.log(startCaseName); // 'Leah Kelly'
 함수 합성
 
 
-
 ---
 
 <CodeSurfer>
 
-```js file=./src/FunctionComposition/1-1.js subtitle="아무 생각없이 만든 함수"
+```js file=./src/FunctionComposition/1-1.js subtitle="여러 헬퍼 함수들"
 ```
 
 ```js file=./src/FunctionComposition/1-2.js subtitle="2의 네 제곱"
@@ -563,33 +639,11 @@ console.log(startCaseName); // 'Leah Kelly'
 </CodeSurfer>
 
 
-
-
 ---
 
 <CodeSurferColumns themes={[imperativeTheme, fpTheme]}>
 
-<Step subtitle="함수 합성의 수학적 표현">
-
-```js
-(h ・ g ・ f)(x) = h( g( f( x ) ) )
-```
-
-```js
-inc(negate(pow(2, 4)));
-```
-
-</Step>
-
-</CodeSurferColumns>
-
-
-
----
-
-<CodeSurferColumns themes={[imperativeTheme, fpTheme]}>
-
-<Step subtitle="수학적 표현을 읽기 편하게 바꿔줄 compose 함수">
+<Step subtitle="읽기 편하게 바꿔줄 compose 함수">
 
 ```js file=./src/FunctionComposition/compose.js
 ```
@@ -678,13 +732,11 @@ compose(
 </CodeSurferColumns>
 
 
-
 ---
 
 # Pointfree Style
 
 포인트프리 스타일
-
 
 
 ---
@@ -717,7 +769,6 @@ compose(
 ```
 
 </CodeSurfer>
-
 
 
 ---
@@ -759,7 +810,6 @@ compose( inc, negate, pow )(2, 4); // -15
 </CodeSurferColumns>
 
 
-
 ---
 
 <CodeSurfer>
@@ -787,7 +837,6 @@ compose( inc, negate, pow )(2, 4); // -15
 </CodeSurfer>
 
 
-
 ---
 
 <CodeSurferColumns themes={[imperativeTheme, fpTheme]}>
@@ -807,13 +856,11 @@ pipe(pow, negate, inc);
 </CodeSurferColumns>
 
 
-
 ---
 
 # Currying
 
 커링
-
 
 
 ---
@@ -829,7 +876,7 @@ pipe(pow, negate, inc);
 
 ```jsx title="변경 전"
 const person = {
-  name: 'theo.gt',
+  name: 'Nakta',
   age: 15,
   work: 'developer'
 };
@@ -846,7 +893,7 @@ const person = {
 
 ```jsx title="변경 후"
 const person = {
-  name: 'theo.gt',
+  name: 'Nakta',
   work: 'developer'
 };
 ```
@@ -862,7 +909,7 @@ const person = {
 
 ```jsx title="변경 후"
 const person = {
-  name: 'theo.gt',
+  name: 'Nakta',
   job: 'developer'
 };
 ```
@@ -870,7 +917,6 @@ const person = {
 </Step>
 
 </CodeSurferColumns>
-
 
 
 ---
@@ -892,13 +938,11 @@ const person = {
 </CodeSurfer>
 
 
-
 ---
 
 # Currying
 
 > 파라미터를 모두 채우지 않는 한 함수로 남아있겠다.
-
 
 
 ---
@@ -927,7 +971,6 @@ const person = {
 </CodeSurfer>
 
 
-
 ---
 
 <CodeSurfer>
@@ -950,7 +993,6 @@ const person = {
 </CodeSurfer>
 
 
-
 ---
 
 <CodeSurfer>
@@ -970,13 +1012,11 @@ const person = {
 </CodeSurfer>
 
 
-
 ---
 
 # 함수형 스타일 비교
 
 메소드 체이닝 vs 파이프라이닝
-
 
 
 ---
@@ -992,7 +1032,6 @@ const person = {
 </CodeSurfer>
 
 
-
 ---
 
 <CodeSurfer>
@@ -1004,7 +1043,6 @@ const person = {
 ```
 
 </CodeSurfer>
-
 
 
 ---
@@ -1055,7 +1093,6 @@ const person = {
 </CodeSurferColumns>
 
 
-
 ---
 
 <CodeSurferColumns themes={[github, imperativeTheme]}>
@@ -1069,7 +1106,7 @@ const person = {
 
 ```jsx title="변경 대상"
 const person = {
-  name: 'theo.gt',
+  name: 'Nakta',
   age: 15,
   work: 'developer'
 };
@@ -1078,7 +1115,6 @@ const person = {
 </Step>
 
 </CodeSurferColumns>
-
 
 
 ---
@@ -1095,7 +1131,7 @@ const person = {
 
 </Step>
 
-<Step subtitle="lodash의 omit으로 age를 지운다">
+<Step subtitle="lodash와 ramda의 omit으로 age를 지운다">
 
 ```jsx file=./src/CodeStyle/chaining-2.js title="메소드 체이닝"
 ```
@@ -1139,13 +1175,11 @@ const person = {
 </CodeSurferColumns>
 
 
-
 ---
 
 # Functor
 
 펑터
-
 
 
 ---
@@ -1162,7 +1196,6 @@ const person = {
 ```
 
 </CodeSurfer>
-
 
 
 ---
@@ -1193,7 +1226,6 @@ const person = {
 
 
 </CodeSurferColumns>
-
 
 
 ---
@@ -1229,7 +1261,6 @@ const person = {
 ```
 
 </CodeSurfer>
-
 
 
 ---
@@ -1272,7 +1303,6 @@ const person = {
 </CodeSurfer>
 
 
-
 ---
 
 <CodeSurfer>
@@ -1289,13 +1319,11 @@ const person = {
 </CodeSurfer>
 
 
-
 ---
 
 # Functor
 
 > 같은 타입을 반환하는 map 메소드를 구현한 객체
-
 
 
 ---
@@ -1323,13 +1351,11 @@ const person = {
 </CodeSurfer>
 
 
-
 ---
 
 # 펑터를 왜 사용할까?
 
 굳이 펑터에 값을 넣어서 사용하는 목적이 뭘까?
-
 
 
 ---
@@ -1363,7 +1389,6 @@ const person = {
 </CodeSurfer>
 
 
-
 ---
 
 # Maybe
@@ -1371,12 +1396,11 @@ const person = {
 우아한 에러 처리
 
 
-
 ---
 
 <CodeSurferColumns themes={[ imperativeTheme, fpTheme]}>
 
-<Step subtitle="Maybe의 상태는 두 가지 값을 갖는다">
+<Step title="Maybe 펑터" subtitle="두 가지 상태">
 
 ```markdown
 Nothing
@@ -1392,12 +1416,11 @@ Just
 
 
 
-
 ---
 
 <CodeSurferColumns>
 
-<Step>
+<Step title="Maybe 펑터">
 
 ```js subtitle="값이 null or undefined"
 Maybe.of(null) // Nothing
@@ -1410,7 +1433,6 @@ Maybe.of('Hello, FP') // Just('Hello, FP')
 </Step>
 
 </CodeSurferColumns>
-
 
 
 ---
@@ -1436,7 +1458,6 @@ Maybe.of('Hello, FP') // Just('Hello, FP')
 
 
 
-
 ---
 
 <CodeSurfer>
@@ -1459,13 +1480,11 @@ Maybe.of('Hello, FP') // Just('Hello, FP')
 </CodeSurfer>
 
 
-
 ---
 
 # Railway Oriented Programming
 
 <Image src={roo} style={{backgroundSize: 'auto'}}/>
-
 
 
 ---
@@ -1499,7 +1518,6 @@ Maybe.of('Hello, FP') // Just('Hello, FP')
 </CodeSurfer>
 
 
-
 ---
 
 <CodeSurfer>
@@ -1508,7 +1526,6 @@ Maybe.of('Hello, FP') // Just('Hello, FP')
 ```
 
 </CodeSurfer>
-
 
 
 
@@ -1529,7 +1546,6 @@ Maybe.of('Hello, FP') // Just('Hello, FP')
 </CodeSurferColumns>
 
 
-
 ---
 
 <CodeSurfer>
@@ -1538,7 +1554,6 @@ Maybe.of('Hello, FP') // Just('Hello, FP')
 ```
 
 </CodeSurfer>
-
 
 
 ---
@@ -1551,13 +1566,11 @@ Maybe.of('Hello, FP') // Just('Hello, FP')
 </CodeSurfer>
 
 
-
 ---
 
 # Q & A
 
-More 👉 https://velog.io/@nakta/series/FP-in-JS
-
+More 👉 https://nakta.dev/fp-in-js-1-code-style
 
 
 ---
